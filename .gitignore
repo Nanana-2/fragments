@@ -1,0 +1,5 @@
+.downloads/
+dist/
+*.tar.gz
+icon-master.png
+ogp-source.png

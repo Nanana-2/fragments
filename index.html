@@ -1,0 +1,678 @@
+<!-- File: index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Fragments</title>
+
+  <!-- OGP / メタデータ -->
+  <meta name="description" content="他者と繋がらない、レスバのない、著作権切れの言葉をカジュアルに消費するための静かなタイムライン。">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fragments-literature-feed.peachy-acorn-6213.chatgpt.site/">
+  <meta property="og:title" content="Fragments | 活字の断片が流れるタイムライン">
+  <meta property="og:description" content="他者と繋がらない、レスバのない、著作権切れの言葉をカジュアルに消費するための静かなタイムライン。">
+  <meta property="og:image" content="https://fragments-literature-feed.peachy-acorn-6213.chatgpt.site/ogp.png">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://fragments-literature-feed.peachy-acorn-6213.chatgpt.site/">
+  <meta name="twitter:title" content="Fragments | 活字の断片が流れるタイムライン">
+  <meta name="twitter:description" content="他者と繋がらない、レスバのない、著作権切れの言葉をカジュアルに消費するための静かなタイムライン。">
+  <meta name="twitter:image" content="https://fragments-literature-feed.peachy-acorn-6213.chatgpt.site/ogp.png">
+
+  <!-- PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#ffffff" id="theme-color-meta">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+
+  <!-- フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0f1419;
+      --sub: #536471;
+      --border: #eff3f4;
+      --like: #f91880;
+      --avatar-bg: #e1e8ed;
+      --avatar-text: #0f1419;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #000000;
+      --text: #e7e9ea;
+      --sub: #71767b;
+      --border: #2f3336;
+      --like: #f91880;
+      --avatar-bg: #202327;
+      --avatar-text: #e7e9ea;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      max-width: 600px;
+      margin: 0 auto;
+      min-height: 100vh;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: var(--bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px 6px 16px;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .theme-toggle-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tabs {
+      display: flex;
+      width: 100%;
+    }
+
+    .tab-btn {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      background: none;
+      border: none;
+      font-family: var(--font);
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--sub);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .tab-btn.active {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .tab-btn.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 3px;
+      background-color: var(--text);
+      border-radius: 2px;
+    }
+
+    #pull-indicator {
+      width: 100%;
+      height: 0px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--sub);
+      transition: height 0.2s ease;
+    }
+
+    .post {
+      display: flex;
+      gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post-avatar {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--avatar-bg);
+      color: var(--avatar-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      user-select: none;
+    }
+
+    .post-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .author-name {
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .work-handle, .post-time {
+      color: var(--sub);
+      font-size: 13.5px;
+      white-space: nowrap;
+    }
+
+    .meta-dot {
+      color: var(--sub);
+      font-size: 12px;
+    }
+
+    .post-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-bottom: 8px;
+    }
+
+    .post-actions {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-top: 4px;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      color: var(--sub);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 50%;
+      transition: color 0.15s ease;
+    }
+
+    .action-btn:hover {
+      color: var(--text);
+    }
+
+    .action-btn.liked {
+      color: var(--like);
+    }
+
+    .action-btn.liked svg {
+      fill: var(--like);
+      stroke: var(--like);
+    }
+
+    .empty-state {
+      padding: 4rem 1.5rem;
+      text-align: center;
+      color: var(--sub);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 600px) {
+      .app-container {
+        border-left: none;
+        border-right: none;
+      }
+      .post {
+        padding: 12px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header>
+      <div class="header-top">
+        <span class="brand-title">Fragments</span>
+        <button class="theme-toggle-btn" id="themeBtn" aria-label="テーマ切替">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path><path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path><path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="tabs">
+        <button class="tab-btn active" id="tabFeed">タイムライン</button>
+        <button class="tab-btn" id="tabLikes">保存済み</button>
+      </nav>
+    </header>
+
+    <div id="pull-indicator">引っ張って更新</div>
+    <main id="postFeed"></main>
+  </div>
+
+  <script>
+    // 1. 安全なストレージラッパー（ローカルファイル実行時等の例外防止）
+    const storage = {
+      data: {},
+      getItem(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (e) {
+          return this.data[key] || null;
+        }
+      },
+      setItem(key, value) {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch (e) {
+          this.data[key] = String(value);
+        }
+      }
+    };
+
+    // 2. 内蔵フォールバックデータ（quotes.json 未配置時でも即座に動作）
+    const fallbackData = [
+      {
+        id: "dazai_01",
+        author: "太宰治",
+        work: "女生徒",
+        year: "1939年",
+        text: "幸福は一夜おくれて来る。\n私の言葉ではない。或る鉄石の作家が言った言葉だ。幸福を待つ間が、一番幸福なのかも知れない。"
+      },
+      {
+        id: "ango_01",
+        author: "坂口安吾",
+        work: "夜長姫と耳男",
+        year: "1952年",
+        text: "好きなものは呪うか殺すか争うかしなければならないのよ。お前のようにただ眺めて、愛しているなんて、それは嘘よ。"
+      },
+      {
+        id: "akutagawa_01",
+        author: "芥川龍之介",
+        work: "侏儒の言葉",
+        year: "1923年",
+        text: "人生は一箱のマッチに似ている。重大に扱うのは莫迦莫迦しい。重大に扱わなければ危険である。"
+      },
+      {
+        id: "kenji_01",
+        author: "宮沢賢治",
+        work: "春と修羅",
+        year: "1924年",
+        text: "わたくしといふ現象は、仮定された有機交流電燈のひとつの青い照明です。\n（あらゆる透明な幽霊の複合体）"
+      },
+      {
+        id: "nakahara_01",
+        author: "中原中也",
+        work: "山羊の歌",
+        year: "1934年",
+        text: "汚れつちまつた悲しみに\n今日も小雪の降りかかる\n汚れつちまつた悲しみに\n今日も風さへ吹きすぎる"
+      },
+      {
+        id: "kajii_01",
+        author: "梶井基次郎",
+        work: "愛撫",
+        year: "1930年",
+        text: "爪というものは、人間の皮膚が変質してできた一つの鋭敏な硬度である。これほど純粋に、触れるという快感を伝えてくる器官はない。"
+      },
+      {
+        id: "santoka_01",
+        author: "種田山頭火",
+        work: "行乞記",
+        year: "1932年",
+        text: "昼間は、なんの気もなしに暮らしているのだが、日が暮れて夜になると、私は急に人間が恋しくなるのである。"
+      },
+      {
+        id: "odasaku_01",
+        author: "織田作之助",
+        work: "夫婦善哉",
+        year: "1940年",
+        text: "死ぬことは、なんでもない。恐ろしいのは、生きることも死ぬことも、どっちでもよくなってしまうことだ。"
+      },
+      {
+        id: "soseki_01",
+        author: "夏目漱石",
+        work: "草枕",
+        year: "1906年",
+        text: "智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。"
+      },
+      {
+        id: "kotaro_01",
+        author: "高村光太郎",
+        work: "道程",
+        year: "1914年",
+        text: "僕の前に道はない\n僕の後ろに道は出来る"
+      }
+    ];
+
+    let masterData = fallbackData;
+
+    // 3. 基本UI要素と状態
+    const themeBtn = document.getElementById('themeBtn');
+    const themeMeta = document.getElementById('theme-color-meta');
+    const feedElem = document.getElementById('postFeed');
+    const tabFeed = document.getElementById('tabFeed');
+    const tabLikes = document.getElementById('tabLikes');
+    const pullIndicator = document.getElementById('pull-indicator');
+
+    let currentTab = 'feed';
+    let likedPostIds = new Set();
+    let authorAffinities = {};
+
+    try {
+      likedPostIds = new Set(JSON.parse(storage.getItem('liked_posts') || '[]'));
+      authorAffinities = JSON.parse(storage.getItem('author_affinities') || '{}');
+    } catch (e) {
+      likedPostIds = new Set();
+      authorAffinities = {};
+    }
+
+    // テーマ切り替え
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        if (themeMeta) themeMeta.setAttribute('content', '#ffffff');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (themeMeta) themeMeta.setAttribute('content', '#000000');
+      }
+    });
+
+    // 4. 重み付き推薦ロジック
+    function pickNextItem() {
+      let totalWeight = 0;
+      const weights = masterData.map(item => {
+        const affinity = authorAffinities[item.author] || 0;
+        const weight = 1.0 + Math.min(affinity, 8) * 0.4;
+        totalWeight += weight;
+        return weight;
+      });
+
+      let random = Math.random() * totalWeight;
+      for (let i = 0; i < masterData.length; i++) {
+        if (random < weights[i]) return masterData[i];
+        random -= weights[i];
+      }
+      return masterData[Math.floor(Math.random() * masterData.length)];
+    }
+
+    // 5. 滞留時間の観測
+    let dwellTimers = new Map();
+    let observer = null;
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const author = entry.target.dataset.author;
+          if (!author) return;
+
+          if (entry.isIntersecting) {
+            const timer = setTimeout(() => {
+              authorAffinities[author] = (authorAffinities[author] || 0) + 1;
+              storage.setItem('author_affinities', JSON.stringify(authorAffinities));
+            }, 1500);
+            dwellTimers.set(entry.target, timer);
+          } else {
+            if (dwellTimers.has(entry.target)) {
+              clearTimeout(dwellTimers.get(entry.target));
+              dwellTimers.delete(entry.target);
+            }
+          }
+        });
+      }, { threshold: 0.6 });
+    }
+
+    // 6. ポスト要素の生成
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+      }[tag] || tag));
+    }
+
+    function createPostNode(item) {
+      const isLiked = likedPostIds.has(item.id);
+      const article = document.createElement('article');
+      article.className = 'post';
+      article.dataset.author = item.author;
+      article.dataset.id = item.id;
+
+      article.innerHTML = `
+        <div class="post-avatar">${escapeHTML(item.author[0])}</div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="author-name">${escapeHTML(item.author)}</span>
+            <span class="work-handle">@${escapeHTML(item.work)}</span>
+            <span class="meta-dot">·</span>
+            <span class="post-time">${escapeHTML(item.year || '')}</span>
+          </div>
+          <div class="post-body">${escapeHTML(item.text)}</div>
+          <div class="post-actions">
+            <button class="action-btn like-btn ${isLiked ? 'liked' : ''}" aria-label="いいね">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+            <button class="action-btn share-btn" aria-label="共有">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                <polyline points="16 6 12 2 8 6"></polyline>
+                <line x1="12" y1="2" x2="12" y2="15"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+
+      // いいね処理
+      const likeBtn = article.querySelector('.like-btn');
+      likeBtn.addEventListener('click', () => {
+        if (likedPostIds.has(item.id)) {
+          likedPostIds.delete(item.id);
+          likeBtn.classList.remove('liked');
+          if (currentTab === 'likes') {
+            article.remove();
+            checkEmptyLikes();
+          }
+        } else {
+          likedPostIds.add(item.id);
+          likeBtn.classList.add('liked');
+          authorAffinities[item.author] = (authorAffinities[item.author] || 0) + 3;
+          storage.setItem('author_affinities', JSON.stringify(authorAffinities));
+        }
+        storage.setItem('liked_posts', JSON.stringify(Array.from(likedPostIds)));
+      });
+
+      // 共有処理（OSネイティブ共有優先、フォールバックでXの投稿画面を開く）
+      const shareBtn = article.querySelector('.share-btn');
+      shareBtn.addEventListener('click', async () => {
+        const shareText = `${item.text}\n\n―― ${item.author} @${item.work}`;
+        const currentUrl = window.location.href.split('#')[0];
+
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              text: shareText,
+              url: currentUrl
+            });
+            return;
+          } catch (e) {
+            // キャンセル等は無視してフォールバック
+          }
+        }
+
+        const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentUrl)}`;
+        window.open(tweetUrl, '_blank', 'noopener,noreferrer');
+      });
+
+      if (observer) observer.observe(article);
+      return article;
+    }
+
+    function checkEmptyLikes() {
+      if (feedElem.children.length === 0) {
+        feedElem.innerHTML = `<div class="empty-state">まだ保存された言葉はありません。<br>タイムラインでハートを押すとここに蓄積されます。</div>`;
+      }
+    }
+
+    function appendFeedPosts(count = 6) {
+      for (let i = 0; i < count; i++) {
+        const item = pickNextItem();
+        feedElem.appendChild(createPostNode(item));
+      }
+    }
+
+    function renderLikes() {
+      feedElem.innerHTML = '';
+      const likedItems = masterData.filter(d => likedPostIds.has(d.id));
+      if (likedItems.length === 0) {
+        checkEmptyLikes();
+        return;
+      }
+      likedItems.forEach(item => {
+        feedElem.appendChild(createPostNode(item));
+      });
+    }
+
+    // タブ切り替え
+    tabFeed.addEventListener('click', () => {
+      if (currentTab === 'feed') return;
+      currentTab = 'feed';
+      tabFeed.classList.add('active');
+      tabLikes.classList.remove('active');
+      feedElem.innerHTML = '';
+      appendFeedPosts(8);
+    });
+
+    tabLikes.addEventListener('click', () => {
+      if (currentTab === 'likes') return;
+      currentTab = 'likes';
+      tabLikes.classList.add('active');
+      tabFeed.classList.remove('active');
+      renderLikes();
+    });
+
+    // 無限スクロール
+    window.addEventListener('scroll', () => {
+      if (currentTab !== 'feed') return;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const clientHeight = window.innerHeight;
+
+      if (scrollTop + clientHeight >= scrollHeight - 600) {
+        appendFeedPosts(4);
+      }
+    }, { passive: true });
+
+    // 引っ張って更新
+    let touchStartY = 0;
+    let isPulling = false;
+
+    window.addEventListener('touchstart', (e) => {
+      if (window.scrollY === 0) {
+        touchStartY = e.touches[0].clientY;
+        isPulling = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isPulling || currentTab !== 'feed') return;
+      const currentY = e.touches[0].clientY;
+      const diff = currentY - touchStartY;
+
+      if (diff > 0 && window.scrollY === 0) {
+        const height = Math.min(diff * 0.4, 56);
+        pullIndicator.style.height = `${height}px`;
+        pullIndicator.textContent = height > 40 ? '離して更新' : '引っ張って更新';
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      if (!isPulling) return;
+      isPulling = false;
+      const height = parseInt(pullIndicator.style.height || '0');
+      if (height > 40) {
+        pullIndicator.textContent = '更新中...';
+        setTimeout(() => {
+          const newItem = pickNextItem();
+          feedElem.insertBefore(createPostNode(newItem), feedElem.firstChild);
+          pullIndicator.style.height = '0px';
+        }, 400);
+      } else {
+        pullIndicator.style.height = '0px';
+      }
+    });
+
+    // 外部JSON読み込み（存在しない場合はフォールバックのまま動作）
+    async function init() {
+      try {
+        const res = await fetch('./quotes.json');
+        if (res.ok) {
+          const json = await res.json();
+          if (Array.isArray(json) && json.length > 0) {
+            masterData = json;
+          }
+        }
+      } catch (e) {
+        // quotes.json がない環境では fallbackData を維持
+      }
+      appendFeedPosts(8);
+    }
+
+    init();
+  </script>
+</body>
+</html>
