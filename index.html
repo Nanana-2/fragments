@@ -376,6 +376,18 @@
       {
         id: "fallback_kotaro_01", author: "高村光太郎", work: "回想録", year: "1940年", tone: "white",
         text: "私は現在目の前にあるものを尊しと思う。"
+      },
+      {
+        id: "fallback_marcus_01", author: "マルクス・アウレリウス", work: "自省録（独自訳）", year: "西暦2世紀", tone: "blue",
+        text: "自分の心を支配できるのは自分だけだ。外の出来事には、その力はない。"
+      },
+      {
+        id: "fallback_nakajima_01", author: "中島敦", work: "和歌でない歌", year: "1942年", tone: "gold",
+        text: "ある時は西行がごと家をすて道を求めてさすらはむ心"
+      },
+      {
+        id: "fallback_nietzsche_01", author: "フリードリヒ・ニーチェ", work: "ツァラトゥストラ（独自訳）", year: "1885年", tone: "black",
+        text: "踊る星を生むためには、自分の中に混沌を持っていなければならない。"
       }
     ];
 
@@ -446,23 +458,27 @@
       const freshAuthors = candidates.filter(item => !recentAuthors.includes(item.author));
       if (freshAuthors.length > 0) candidates = freshAuthors;
 
+      // 断片数の多い作家だけが有利にならないよう、先に作家を選んでから一篇を選ぶ。
+      const candidateAuthors = Array.from(new Set(candidates.map(item => item.author)));
       let totalWeight = 0;
-      const weights = candidates.map(item => {
-        const affinity = authorAffinities[item.author] || 0;
+      const weights = candidateAuthors.map(author => {
+        const affinity = authorAffinities[author] || 0;
         const weight = 1.0 + Math.min(affinity, 8) * 0.4;
         totalWeight += weight;
         return weight;
       });
 
       let random = Math.random() * totalWeight;
-      let picked = candidates[candidates.length - 1];
-      for (let i = 0; i < candidates.length; i++) {
+      let pickedAuthor = candidateAuthors[candidateAuthors.length - 1];
+      for (let i = 0; i < candidateAuthors.length; i++) {
         if (random < weights[i]) {
-          picked = candidates[i];
+          pickedAuthor = candidateAuthors[i];
           break;
         }
         random -= weights[i];
       }
+      const authorCandidates = candidates.filter(item => item.author === pickedAuthor);
+      const picked = authorCandidates[Math.floor(Math.random() * authorCandidates.length)];
       recentPostIds.push(picked.id);
       if (recentPostIds.length > 40) recentPostIds.shift();
       recentTones.push(picked.tone || 'white');
@@ -530,7 +546,18 @@
       '北大路魯山人': './avatars/kitaoji-rosanjin.jpg',
       '岡本かの子': './avatars/okamoto-kanoko.jpg',
       '高村光太郎': './avatars/takamura-kotaro.jpg',
-      '下村湖人': './avatars/shimomura-kojin.jpg'
+      '下村湖人': './avatars/shimomura-kojin.jpg',
+      '中島敦': './avatars/nakajima-atsushi.jpg',
+      '中原中也': './avatars/nakahara-chuya.jpg',
+      '萩原朔太郎': './avatars/hagiwara-sakutaro.jpg',
+      '宮沢賢治': './avatars/miyazawa-kenji.jpg',
+      '与謝野晶子': './avatars/yosano-akiko.jpg',
+      '北原白秋': './avatars/kitahara-hakushu.jpg',
+      '八木重吉': './avatars/yagi-jukichi.jpg',
+      'マルクス・アウレリウス': './avatars/marcus-aurelius.jpg',
+      'フリードリヒ・ニーチェ': './avatars/friedrich-nietzsche.jpg',
+      'フランツ・カフカ': './avatars/franz-kafka.jpg',
+      'エピクテトス': './avatars/epictetus.png'
     };
 
     function createPostNode(item) {
@@ -653,14 +680,7 @@
     }
 
     // タブ切り替え
-    tabFeed.addEventListener('click', () => {
-      if (currentTab === 'feed') return;
-      currentTab = 'feed';
-      tabFeed.classList.add('active');
-      tabLikes.classList.remove('active');
-      feedElem.innerHTML = '';
-      appendFeedPosts(8);
-    });
+    tabFeed.addEventListener('click', refreshTimeline);
 
     tabLikes.addEventListener('click', () => {
       if (currentTab === 'likes') return;

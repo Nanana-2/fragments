@@ -8,10 +8,10 @@ from collections import Counter
 from typing import Optional
 
 
-DEFAULT_MAX_QUOTES = 360
+DEFAULT_MAX_QUOTES = 800
 MIN_LEN = 12
 MAX_LEN = 100
-MAX_PER_AUTHOR = 50
+MAX_PER_AUTHOR = 60
 
 TONE_RATIOS = {
     "white": 0.25,
@@ -26,7 +26,19 @@ SOURCE_PROFILES = {
     "悲しき玩具": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
     "尾崎放哉選句集": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
     "草木塔": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "山羊の歌": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "青猫": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "純情小曲集": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "和歌でない歌": {"source_type": "poetry", "tone": "gold", "mode": "poetry_lines"},
+    "春と修羅": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "みだれ髪": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "桐の花": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "秋の瞳": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
     "侏儒の言葉": {"source_type": "aphorism", "tone": "black", "mode": "prose"},
+    "自省録（独自訳）": {"source_type": "aphorism", "tone": "blue", "mode": "prose"},
+    "ツァラトゥストラ（独自訳）": {"source_type": "aphorism", "tone": "black", "mode": "prose"},
+    "提要（独自訳）": {"source_type": "aphorism", "tone": "blue", "mode": "prose"},
+    "罪・苦痛・希望・及び真実の道についての考察": {"source_type": "aphorism", "tone": "black", "mode": "prose_blocks"},
     "科学者とあたま": {"source_type": "essay", "tone": "blue", "mode": "prose"},
     "行乞記": {"source_type": "diary", "tone": "white", "mode": "prose"},
     "一日中の楽しき時刻": {"source_type": "diary", "tone": "white", "mode": "prose"},
@@ -37,9 +49,9 @@ SOURCE_PROFILES = {
 }
 
 CONTEXTUAL_OPENINGS = re.compile(
-    r"^(彼女|彼|その|この|あの|それから|この男|しかし|だが|だから|ところで|そして|"
+    r"^(彼女|彼|その|この|あの|これ|それ|それから|この男|しかし|だが|だから|ところで|そして|"
     r"けれども|けれど|そこで|すると|そうして|こうして|さて|やがて|また一方|"
-    r"従って|したがって|しかるに|なお|もっとも|尤も|実は|一方|要するに)"
+    r"従って|したがって|しかるに|なお|もっとも|尤も|実は|一方|要するに|今考えると)"
 )
 
 CONVERSATION_ENDINGS = re.compile(
@@ -54,7 +66,7 @@ DEPENDENT_PHRASES = re.compile(
     r"この場合|これを読|それについて|さう云ふ|そういう|と言うので|といふので)"
 )
 POETRY_META = re.compile(
-    r"(霊前|本書|修証義|序に代|青空文庫|底本|初出|編者|選句|句集|改版|昭和|明治|大正|年作|月作)"
+    r"(霊前|本書|修証義|序に代|序文|青空文庫|底本|初出|編者|著者|選句|句集|改版|昭和|明治|大正|西暦|年作|月作)"
 )
 
 
@@ -115,13 +127,19 @@ def standalone_score(text: str, source_type: str, mode: str) -> Optional[int]:
         return None
     if CONTEXTUAL_OPENINGS.search(text) or SPECIAL_CHARACTERS.search(text):
         return None
-    if mode == "prose" and DEPENDENT_PHRASES.search(text):
+    if mode.startswith("prose") and DEPENDENT_PHRASES.search(text):
         return None
-    if mode == "prose" and re.search(r"(?:（[一二三四五六七八九十]+月[^）]*）|^[（(][月火水木金土日][）)])", text):
+    if mode.startswith("prose") and re.search(r"(?:（[一二三四五六七八九十]+月[^）]*）|^[（(][月火水木金土日][）)])", text):
         return None
-    if mode == "poetry" and POETRY_META.search(text):
+    if mode.startswith("poetry") and POETRY_META.search(text):
         return None
-    if mode == "poetry" and len(re.findall(r"[。！？]", text)) > 2:
+    if mode.startswith("poetry") and re.match(r"^[0-9〇一二三四五六七八九十]+[―—-]", text):
+        return None
+    if mode.startswith("poetry") and re.match(r"^(トンネルへ|すべてこれらの命題は)", text):
+        return None
+    if mode.startswith("poetry") and len(re.findall(r"[。！？]", text)) > 2:
+        return None
+    if mode.startswith("poetry") and len(text.replace("\n", "")) > 70 and text.endswith("。"):
         return None
     if re.fullmatch(r"[\s\d一二三四五六七八九十百千（\）()・]+", text):
         return None
@@ -135,12 +153,12 @@ def standalone_score(text: str, source_type: str, mode: str) -> Optional[int]:
         return None
     if re.search(r"[、，：；（「『—―]$", text):
         return None
-    if mode == "prose" and not re.search(r"[。！？…）]$", text):
+    if mode.startswith("prose") and not re.search(r"[。！？…）]$", text):
         return None
-    if mode == "prose" and len(re.findall(r"[。！？]", text)) > 3:
+    if mode.startswith("prose") and len(re.findall(r"[。！？]", text)) > 3:
         return None
 
-    minimum_ratio = 0.12 if mode == "poetry" else 0.18
+    minimum_ratio = 0.12 if mode.startswith("poetry") else 0.18
     if hiragana_ratio(text) < minimum_ratio:
         return None
 
@@ -155,7 +173,7 @@ def standalone_score(text: str, source_type: str, mode: str) -> Optional[int]:
         score += 8
     if re.search(r"(これ|それ|あれ|ここに|そこに|ような|わけで|のである|という|といふ)", text):
         score -= 18
-    if mode == "poetry" and len(lines) <= 3:
+    if mode.startswith("poetry") and len(lines) <= 3:
         score += 12
     return score
 
@@ -171,6 +189,11 @@ def poetry_candidates(text: str) -> list[str]:
             continue
         candidates.append("\n".join(lines))
     return candidates
+
+
+def poetry_line_candidates(text: str) -> list[str]:
+    """一行一首で組まれた歌集を、改行単位で扱う。"""
+    return [line.strip() for line in text.splitlines() if line.strip()]
 
 
 def prose_candidates(text: str) -> list[str]:
@@ -191,8 +214,24 @@ def prose_candidates(text: str) -> list[str]:
     return candidates
 
 
+def prose_block_candidates(text: str) -> list[str]:
+    """元から短い段落だけを扱い、箴言を文単位に分断しない。"""
+    return [
+        "".join(line.strip() for line in block.splitlines() if line.strip())
+        for block in re.split(r"\n\s*\n", text)
+        if block.strip()
+    ]
+
+
 def extract_work(text: str, author: str, work: str, year: str, profile: dict) -> list[dict]:
-    raw_candidates = poetry_candidates(text) if profile["mode"] == "poetry" else prose_candidates(text)
+    if profile["mode"] == "poetry":
+        raw_candidates = poetry_candidates(text)
+    elif profile["mode"] == "poetry_lines":
+        raw_candidates = poetry_line_candidates(text)
+    elif profile["mode"] == "prose_blocks":
+        raw_candidates = prose_block_candidates(text)
+    else:
+        raw_candidates = prose_candidates(text)
     results = []
     seen_texts = set()
 
@@ -268,10 +307,6 @@ def select_balanced(quotes_by_work: list[list[dict]], max_quotes: int) -> list[d
         if len(selected) >= max_quotes:
             break
         add(item)
-    for item in remaining:
-        if len(selected) >= max_quotes:
-            break
-        add(item, enforce_cap=False)
     return selected
 
 

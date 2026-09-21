@@ -12,5 +12,16 @@
 - 岡本かの子: [Kanoko Okamoto 01.jpg](https://commons.wikimedia.org/wiki/File:Kanoko_Okamoto_01.jpg)
 - 高村光太郎: [Kotaro Takamura by Shigeru Tamura.jpg](https://commons.wikimedia.org/wiki/File:Kotaro_Takamura_by_Shigeru_Tamura.jpg)
 - 下村湖人: [Kojin Shimomura mid-age.jpg](https://commons.wikimedia.org/wiki/File:Kojin_Shimomura_mid-age.jpg)
+- 中島敦: [Nakajima Atsushi.jpg](https://commons.wikimedia.org/wiki/File:Nakajima_Atsushi.jpg)
+- 中原中也: [Chuya1936.jpg](https://commons.wikimedia.org/wiki/File:Chuya1936.jpg)
+- 萩原朔太郎: [Hagiwara Sakutaro.jpg](https://commons.wikimedia.org/wiki/File:Hagiwara_Sakutaro.jpg)
+- 宮沢賢治: [Miyazawa Kenji.jpg](https://commons.wikimedia.org/wiki/File:Miyazawa_Kenji.jpg)
+- 与謝野晶子: [YOSANO Akiko (cropped).jpg](https://commons.wikimedia.org/wiki/File:YOSANO_Akiko_(cropped).jpg)
+- 北原白秋: [Kitahara Hakushu.jpg](https://commons.wikimedia.org/wiki/File:Kitahara_Hakushu.jpg)
+- 八木重吉: [English teacher Jukichi Yagi.jpg](https://commons.wikimedia.org/wiki/File:English_teacher_Jukichi_Yagi.jpg)
+- マルクス・アウレリウス: [Marcus Aurelius MET DP-615-004.jpg](https://commons.wikimedia.org/wiki/File:Marcus_Aurelius_MET_DP-615-004.jpg)
+- フリードリヒ・ニーチェ: [Nietzsche1882.jpg](https://commons.wikimedia.org/wiki/File:Nietzsche1882.jpg)
+- フランツ・カフカ: [Franz Kafka, 1923.jpg](https://commons.wikimedia.org/wiki/File:Franz_Kafka,_1923.jpg)
+- エピクテトス: [Epictetus - Henri Bonnart engraving c. 1700.png](https://commons.wikimedia.org/wiki/File:Epictetus_-_Henri_Bonnart_engraving_c._1700.png)
 
-「作者不詳」は権利と人物を特定できる肖像がないため、文字アイコンを使用する。
+権利を安全に確認できる肖像がない作者は、文字アイコンを使用する。
