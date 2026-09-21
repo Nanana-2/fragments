@@ -1,4 +1,5 @@
 .downloads/
+.openai/
 dist/
 *.tar.gz
 icon-master.png
