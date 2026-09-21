@@ -1,82 +1,2648 @@
 [
-  {"author":"室生犀星","work":"抒情小曲集","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"室生犀星","work":"愛の詩集","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"室生犀星","work":"老いたるえびのうた","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"立原道造","work":"萱草に寄す","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"立原道造","work":"暁と夕の詩","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"立原道造","work":"優しき歌　Ⅰ・Ⅱ","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"山村暮鳥","work":"雲","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"山村暮鳥","work":"風は草木にささやいた","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"山村暮鳥","work":"窓にて","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"伊藤左千夫","work":"草花日記","source_type":"diary","tone":"white","mode":"prose"},
-  {"author":"伊藤左千夫","work":"牛舎の日記","source_type":"diary","tone":"white","mode":"prose"},
-  {"author":"長塚節","work":"長塚節歌集","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"斎藤茂吉","work":"つゆじも","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"竹久夢二","work":"どんたく","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"三好達治","work":"測量船","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"三好達治","work":"南窗集","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"三好達治","work":"駱駝の瘤にまたがつて","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"蒲原有明","work":"春鳥集","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"蒲原有明","work":"有明集","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"蒲原有明","work":"夢は呼び交す","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"島崎藤村","work":"若菜集","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"土井晩翠","work":"天地有情","source_type":"poetry","tone":"gold","mode":"poetry"},
-
-  {"author":"太宰治","work":"一日の労苦","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"太宰治","work":"酒ぎらい","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"太宰治","work":"もの思う葦","source_type":"aphorism","tone":"black","mode":"prose"},
-  {"author":"坂口安吾","work":"青春論","source_type":"essay","tone":"black","mode":"prose"},
-  {"author":"坂口安吾","work":"恋愛論","source_type":"essay","tone":"black","mode":"prose"},
-  {"author":"坂口安吾","work":"悪妻論","source_type":"essay","tone":"black","mode":"prose"},
-  {"author":"夏目漱石","work":"硝子戸の中","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"夏目漱石","work":"思い出す事など","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"夏目漱石","work":"元日","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"梶井基次郎","work":"筧の話","source_type":"essay","tone":"gold","mode":"prose"},
-  {"author":"梶井基次郎","work":"器楽的幻覚","source_type":"essay","tone":"gold","mode":"prose"},
-  {"author":"梶井基次郎","work":"蒼穹","source_type":"essay","tone":"gold","mode":"prose"},
-  {"author":"織田作之助","work":"好奇心","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"織田作之助","work":"競馬","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"織田作之助","work":"神経","source_type":"essay","tone":"black","mode":"prose"},
-  {"author":"林芙美子","work":"朝御飯","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"林芙美子","work":"柿の実","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"林芙美子","work":"田舎がえり","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"永井荷風","work":"断腸亭日乗","source_type":"diary","tone":"white","mode":"prose"},
-  {"author":"永井荷風","work":"一月一日","source_type":"diary","tone":"white","mode":"prose"},
-  {"author":"永井荷風","work":"買出し","source_type":"diary","tone":"white","mode":"prose"},
-  {"author":"田山花袋","work":"閑談","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"田山花袋","work":"雨の日に","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"田山花袋","work":"ある時に","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"徳冨蘆花","work":"みみずのたはこと","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"徳冨蘆花","work":"草とり","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"徳冨蘆花","work":"水汲み","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"豊島与志雄","work":"ふざけた読書","source_type":"essay","tone":"black","mode":"prose"},
-  {"author":"豊島与志雄","work":"秋の気魄","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"豊島与志雄","work":"明日","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"小川未明","work":"愛に就ての問題","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"小川未明","work":"新童話論","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"中勘助","work":"小品四つ","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"中勘助","work":"独り碁","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"中勘助","work":"折紙","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"有島武郎","work":"子供の世界","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"有島武郎","work":"自然と人","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"有島武郎","work":"運命と人","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"幸田露伴","work":"些細なやうで重大な事","source_type":"aphorism","tone":"blue","mode":"prose"},
-  {"author":"幸田露伴","work":"運命は切り開くもの","source_type":"aphorism","tone":"blue","mode":"prose"},
-  {"author":"幸田露伴","work":"雲のいろ／＼","source_type":"essay","tone":"gold","mode":"prose"},
-  {"author":"新渡戸稲造","work":"自警録","source_type":"aphorism","tone":"blue","mode":"prose"},
-  {"author":"新渡戸稲造","work":"「死」の問題に対して","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"新渡戸稲造","work":"教育の最大目的","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"内村鑑三","work":"後世への最大遺物","source_type":"aphorism","tone":"blue","mode":"prose"},
-  {"author":"内村鑑三","work":"問答二三","source_type":"aphorism","tone":"black","mode":"prose"},
-  {"author":"内村鑑三","work":"時事雑評二三","source_type":"essay","tone":"black","mode":"prose"},
-
-  {"author":"佐藤春夫","work":"佐藤春夫詩集","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"佐藤春夫","work":"飲料のはなし","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"佐藤春夫","work":"幸福のなかに","source_type":"essay","tone":"blue","mode":"prose"},
-  {"author":"新美南吉","work":"明日","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"新美南吉","work":"深呼吸","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"新美南吉","work":"月から","source_type":"poetry","tone":"gold","mode":"poetry"},
-  {"author":"牧野信一","work":"好日の記","source_type":"diary","tone":"white","mode":"prose"},
-  {"author":"牧野信一","work":"僕の酒","source_type":"essay","tone":"white","mode":"prose"},
-  {"author":"牧野信一","work":"私の一日","source_type":"diary","tone":"white","mode":"prose"}
+  {
+    "author": "室生犀星",
+    "work": "抒情小曲集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "室生犀星",
+    "work": "愛の詩集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "室生犀星",
+    "work": "老いたるえびのうた",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "立原道造",
+    "work": "萱草に寄す",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "立原道造",
+    "work": "暁と夕の詩",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "立原道造",
+    "work": "優しき歌　Ⅰ・Ⅱ",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "山村暮鳥",
+    "work": "雲",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "山村暮鳥",
+    "work": "風は草木にささやいた",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "山村暮鳥",
+    "work": "窓にて",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "伊藤左千夫",
+    "work": "草花日記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "伊藤左千夫",
+    "work": "牛舎の日記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "長塚節",
+    "work": "長塚節歌集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "斎藤茂吉",
+    "work": "つゆじも",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "竹久夢二",
+    "work": "どんたく",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "三好達治",
+    "work": "測量船",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "三好達治",
+    "work": "南窗集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "三好達治",
+    "work": "駱駝の瘤にまたがつて",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "蒲原有明",
+    "work": "春鳥集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "蒲原有明",
+    "work": "有明集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "蒲原有明",
+    "work": "夢は呼び交す",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "島崎藤村",
+    "work": "若菜集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "土井晩翠",
+    "work": "天地有情",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "太宰治",
+    "work": "一日の労苦",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "太宰治",
+    "work": "酒ぎらい",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "太宰治",
+    "work": "もの思う葦",
+    "source_type": "aphorism",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "坂口安吾",
+    "work": "青春論",
+    "source_type": "essay",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "坂口安吾",
+    "work": "恋愛論",
+    "source_type": "essay",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "坂口安吾",
+    "work": "悪妻論",
+    "source_type": "essay",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "夏目漱石",
+    "work": "硝子戸の中",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "夏目漱石",
+    "work": "思い出す事など",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "夏目漱石",
+    "work": "元日",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "梶井基次郎",
+    "work": "筧の話",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "梶井基次郎",
+    "work": "器楽的幻覚",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "梶井基次郎",
+    "work": "蒼穹",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "織田作之助",
+    "work": "好奇心",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "織田作之助",
+    "work": "競馬",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "織田作之助",
+    "work": "神経",
+    "source_type": "essay",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "林芙美子",
+    "work": "朝御飯",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "林芙美子",
+    "work": "柿の実",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "林芙美子",
+    "work": "田舎がえり",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "永井荷風",
+    "work": "断腸亭日乗",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "永井荷風",
+    "work": "一月一日",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "永井荷風",
+    "work": "買出し",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "田山花袋",
+    "work": "閑談",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "田山花袋",
+    "work": "雨の日に",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "田山花袋",
+    "work": "ある時に",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "徳冨蘆花",
+    "work": "みみずのたはこと",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "徳冨蘆花",
+    "work": "草とり",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "徳冨蘆花",
+    "work": "水汲み",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "豊島与志雄",
+    "work": "ふざけた読書",
+    "source_type": "essay",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "豊島与志雄",
+    "work": "秋の気魄",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "豊島与志雄",
+    "work": "明日",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "小川未明",
+    "work": "愛に就ての問題",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "小川未明",
+    "work": "新童話論",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "中勘助",
+    "work": "小品四つ",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "中勘助",
+    "work": "独り碁",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "中勘助",
+    "work": "折紙",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "有島武郎",
+    "work": "子供の世界",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "有島武郎",
+    "work": "自然と人",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "有島武郎",
+    "work": "運命と人",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "幸田露伴",
+    "work": "些細なやうで重大な事",
+    "source_type": "aphorism",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "幸田露伴",
+    "work": "運命は切り開くもの",
+    "source_type": "aphorism",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "幸田露伴",
+    "work": "雲のいろ／＼",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "新渡戸稲造",
+    "work": "自警録",
+    "source_type": "aphorism",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "新渡戸稲造",
+    "work": "「死」の問題に対して",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "新渡戸稲造",
+    "work": "教育の最大目的",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "内村鑑三",
+    "work": "後世への最大遺物",
+    "source_type": "aphorism",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "内村鑑三",
+    "work": "問答二三",
+    "source_type": "aphorism",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "内村鑑三",
+    "work": "時事雑評二三",
+    "source_type": "essay",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "佐藤春夫",
+    "work": "佐藤春夫詩集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "佐藤春夫",
+    "work": "飲料のはなし",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "佐藤春夫",
+    "work": "幸福のなかに",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "新美南吉",
+    "work": "明日",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "新美南吉",
+    "work": "深呼吸",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "新美南吉",
+    "work": "月から",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "牧野信一",
+    "work": "好日の記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "牧野信一",
+    "work": "僕の酒",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "牧野信一",
+    "work": "私の一日",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "宮本百合子",
+    "work": "モスクワ日記から",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "宮本百合子",
+    "work": "ロシアの旅より",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "宮本百合子",
+    "work": "一九三二年の春",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "宮本百合子",
+    "work": "一九二七年八月より",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "宮本百合子",
+    "work": "一九二七年春より",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岸田国士",
+    "work": "チロルの旅",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岸田国士",
+    "work": "生活から学ぶ",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "岸田国士",
+    "work": "Ｓ夫人への手紙",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岸田国士",
+    "work": "“現代風俗”に就いて",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "岸田国士",
+    "work": "「歳月」前記",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "中谷宇吉郎",
+    "work": "『西遊記』の夢",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "中谷宇吉郎",
+    "work": "アメリカの旅",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "中谷宇吉郎",
+    "work": "ウィネッカの冬",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "中谷宇吉郎",
+    "work": "ウィネッカの秋",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "中谷宇吉郎",
+    "work": "八月三日の夢",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "佐藤垢石",
+    "work": "わが童心",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "佐藤垢石",
+    "work": "ミミズ酒と美女",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "佐藤垢石",
+    "work": "冬の鰍",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "佐藤垢石",
+    "work": "利根川の鮎",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "佐藤垢石",
+    "work": "夜の黒鯛",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "大町桂月",
+    "work": "層雲峡より大雪山へ",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "大町桂月",
+    "work": "秋の筑波山",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "大町桂月",
+    "work": "月譜",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "大町桂月",
+    "work": "一万尺の山嶽",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "大町桂月",
+    "work": "冬の榛名山",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "堀辰雄",
+    "work": "「美しかれ、悲しかれ」",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "堀辰雄",
+    "work": "旅の絵",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "堀辰雄",
+    "work": "雉子日記",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "堀辰雄",
+    "work": "卜居",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "堀辰雄",
+    "work": "大和路・信濃路",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "泉鏡花",
+    "work": "絵本の春",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "泉鏡花",
+    "work": "七宝の柱",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "泉鏡花",
+    "work": "半島一奇抄",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "泉鏡花",
+    "work": "玉川の草",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "泉鏡花",
+    "work": "雨ばけ",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "片山広子",
+    "work": "夢の国",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "片山広子",
+    "work": "花屋の窓",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "片山広子",
+    "work": "「子猫ノハナシ」",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "片山広子",
+    "work": "ばらの花五つ",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "片山広子",
+    "work": "まどはしの四月",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "薄田泣菫",
+    "work": "中宮寺の春",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "薄田泣菫",
+    "work": "山雀",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "薄田泣菫",
+    "work": "手品師と蕃山",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "薄田泣菫",
+    "work": "春の賦",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "薄田泣菫",
+    "work": "春菜",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "森川義信",
+    "work": "冬",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "森川義信",
+    "work": "冬の夜の歌",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "森川義信",
+    "work": "冬・断章",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "森川義信",
+    "work": "帰らぬ春",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "森川義信",
+    "work": "悒鬱な花",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "岡本綺堂",
+    "work": "倫敦の一夜",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岡本綺堂",
+    "work": "栗の花",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岡本綺堂",
+    "work": "一日一筆",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岡本綺堂",
+    "work": "九月四日",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "岡本綺堂",
+    "work": "亡びゆく花",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "長谷川時雨",
+    "work": "尼たちへの消息",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "長谷川時雨",
+    "work": "九条武子",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "長谷川時雨",
+    "work": "柳原燁子（白蓮）",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "長谷川時雨",
+    "work": "古い暦",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "長谷川時雨",
+    "work": "旧聞日本橋",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "折口信夫",
+    "work": "山の湯雑記",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "折口信夫",
+    "work": "山越しの阿弥陀像の画因",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "折口信夫",
+    "work": "古代生活に見えた恋愛",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "折口信夫",
+    "work": "山の音を聴きながら",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "折口信夫",
+    "work": "春永話",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "夢野久作",
+    "work": "月蝕",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "夢野久作",
+    "work": "良心・第一義",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "夢野久作",
+    "work": "古い日記の中から",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "夢野久作",
+    "work": "父杉山茂丸を語る",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "夢野久作",
+    "work": "江戸川乱歩氏に対する私の感想",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "伊藤野枝",
+    "work": "日記より",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "伊藤野枝",
+    "work": "書簡　山田邦子宛",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "伊藤野枝",
+    "work": "消息",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "伊藤野枝",
+    "work": "感想の断片",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "伊藤野枝",
+    "work": "青山菊栄様へ",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "北村透谷",
+    "work": "人生に相渉るとは何の謂ぞ",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "北村透谷",
+    "work": "人生の意義",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "北村透谷",
+    "work": "各人心宮内の秘宮",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "北村透谷",
+    "work": "山庵雑記",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "北村透谷",
+    "work": "徳川氏時代の平民的理想",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "原民喜",
+    "work": "ある手紙",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "原民喜",
+    "work": "より美しく―より和やかに",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "原民喜",
+    "work": "夢と人生",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "原民喜",
+    "work": "千葉海岸の詩",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "原民喜",
+    "work": "海の小品",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "富永太郎",
+    "work": "夜の讃歌",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "富永太郎",
+    "work": "断片",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "富永太郎",
+    "work": "晩春小曲",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "富永太郎",
+    "work": "深夜の道士",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "富永太郎",
+    "work": "秋の悲歎",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "若山牧水",
+    "work": "青年僧と叡山の老爺",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "若山牧水",
+    "work": "なまけ者と雨",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "若山牧水",
+    "work": "みなかみ紀行",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "若山牧水",
+    "work": "村住居の秋",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "若山牧水",
+    "work": "秋草と虫の音",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "吉川英治",
+    "work": "押入れ随筆",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "吉川英治",
+    "work": "美しい日本の歴史",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "吉川英治",
+    "work": "随筆　宮本武蔵",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "吉川英治",
+    "work": "随筆　新平家",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "吉川英治",
+    "work": "随筆　私本太平記",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "正宗白鳥",
+    "work": "冬の法隆寺詣で",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "正宗白鳥",
+    "work": "空想としての新婚旅行",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "正宗白鳥",
+    "work": "月を見ながら",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "正宗白鳥",
+    "work": "花より団子",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "正宗白鳥",
+    "work": "武州公秘話",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "山之口貘",
+    "work": "ダルマ船日記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "山之口貘",
+    "work": "夏向きの一夜",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "山之口貘",
+    "work": "暴風への郷愁",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "山之口貘",
+    "work": "月見草",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "山之口貘",
+    "work": "梯梧の花",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "森鴎外",
+    "work": "寒山拾得縁起",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "森鴎外",
+    "work": "不苦心談",
+    "source_type": "essay",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "森鴎外",
+    "work": "みちの記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "森鴎外",
+    "work": "夢",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "森鴎外",
+    "work": "鴎外漁史とは誰ぞ",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野上豊一郎",
+    "work": "吹雪のユンクフラウ",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野上豊一郎",
+    "work": "エトナ",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野上豊一郎",
+    "work": "シェイクスピアの郷里",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野上豊一郎",
+    "work": "パラティーノ",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野上豊一郎",
+    "work": "パリの地下牢",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "横光利一",
+    "work": "作家の生活",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "横光利一",
+    "work": "夢もろもろ",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "横光利一",
+    "work": "詩集『花電車』序",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "横光利一",
+    "work": "スフィンクス（覚書）",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "横光利一",
+    "work": "冬彦抄",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "北条民雄",
+    "work": "重病室日誌",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "北条民雄",
+    "work": "続重病室日誌",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "北条民雄",
+    "work": "井の中の正月の感想",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "北条民雄",
+    "work": "孤独のことなど",
+    "source_type": "essay",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "北条民雄",
+    "work": "独語",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "高浜虚子",
+    "work": "富士登山",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "高浜虚子",
+    "work": "川端茅舎句集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "高浜虚子",
+    "work": "丸の内",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "高浜虚子",
+    "work": "別府温泉",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "高浜虚子",
+    "work": "横山",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野口雨情",
+    "work": "朝おき雀",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "野口雨情",
+    "work": "沙上の夢",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "野口雨情",
+    "work": "野口雨情民謡叢書　第一篇",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "野口雨情",
+    "work": "雨情民謡百篇",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "野口雨情",
+    "work": "小川芋銭先生と私",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "宮城道雄",
+    "work": "レコード夜話",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "宮城道雄",
+    "work": "声と食物",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "宮城道雄",
+    "work": "山の声",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "宮城道雄",
+    "work": "心の調べ",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "宮城道雄",
+    "work": "春雨",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "三好十郎",
+    "work": "山東へやった手紙",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "三好十郎",
+    "work": "俳優への手紙",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "三好十郎",
+    "work": "日記より",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "三好十郎",
+    "work": "清水幾太郎さんへの手紙",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "三好十郎",
+    "work": "敗れて帰る俺達",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "伊丹万作",
+    "work": "人間山中貞雄",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "伊丹万作",
+    "work": "顔の美について",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "伊丹万作",
+    "work": "広告",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "伊丹万作",
+    "work": "わが妻の記",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "伊丹万作",
+    "work": "ルネ・クレール私見",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "海野十三",
+    "work": "江戸推理川柳抄",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "海野十三",
+    "work": "南太平洋科学風土記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "海野十三",
+    "work": "成層圏飛行と私のメモ",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "海野十三",
+    "work": "探偵会話　下駄を探せ",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "海野十三",
+    "work": "科学が臍を曲げた話",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "久保田万太郎",
+    "work": "春深く",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "久保田万太郎",
+    "work": "井上正夫におくる手紙",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "久保田万太郎",
+    "work": "夜店ばなし",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "久保田万太郎",
+    "work": "雷門以北",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "久保田万太郎",
+    "work": "にはかへんろ記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "小酒井不木",
+    "work": "「心理試験」序",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "小酒井不木",
+    "work": "江戸川氏と私",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "小酒井不木",
+    "work": "『少年科学探偵』序",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "小酒井不木",
+    "work": "ヂュパンとカリング",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "小酒井不木",
+    "work": "ポオとルヴェル",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "辻潤",
+    "work": "風狂私語",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "辻潤",
+    "work": "「享楽座」のぷろろぐ",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "辻潤",
+    "work": "え゛りと・え゛りたす",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "辻潤",
+    "work": "だだをこねる",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "辻潤",
+    "work": "ふもれすく",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "正岡容",
+    "work": "東京万花鏡",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "正岡容",
+    "work": "寄席風流",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "正岡容",
+    "work": "山の手歳事記",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "正岡容",
+    "work": "滝野川貧寒",
+    "source_type": "essay",
+    "tone": "black",
+    "mode": "prose"
+  },
+  {
+    "author": "正岡容",
+    "work": "大正東京錦絵",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "菊池寛",
+    "work": "芥川の印象",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "菊池寛",
+    "work": "志賀直哉氏の作品",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "菊池寛",
+    "work": "易と手相",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "菊池寛",
+    "work": "碁の手直り表",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "菊池寛",
+    "work": "私の日常道徳",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "会津八一",
+    "work": "一片の石",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "会津八一",
+    "work": "支那の明器",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "会津八一",
+    "work": "菊の根分をしながら",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "会津八一",
+    "work": "大学とその総長",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "会津八一",
+    "work": "学規",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野村胡堂",
+    "work": "随筆銭形平次",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野村胡堂",
+    "work": "乱歩氏と私と",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野村胡堂",
+    "work": "平次と生きた二十七年",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "野村胡堂",
+    "work": "平次放談",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "野村胡堂",
+    "work": "捕物小説のむずかしさ",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "淡島寒月",
+    "work": "亡び行く江戸趣味",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "淡島寒月",
+    "work": "凧の話",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "淡島寒月",
+    "work": "土俗玩具の話",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "淡島寒月",
+    "work": "寺内の奇人団",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "淡島寒月",
+    "work": "明治十年前後",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "尾形亀之助",
+    "work": "雨になる朝",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "尾形亀之助",
+    "work": "さびしい人生興奮",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "尾形亀之助",
+    "work": "早春雑記",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "尾形亀之助",
+    "work": "身辺雑記",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "尾形亀之助",
+    "work": "私と詩",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "辰野隆",
+    "work": "銷夏漫筆",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "辰野隆",
+    "work": "雨の日",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "辰野隆",
+    "work": "パリの散策",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "辰野隆",
+    "work": "二人のセルヴィヤ人",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "辰野隆",
+    "work": "感傷主義",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "谷崎潤一郎",
+    "work": "「細雪」回顧",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "谷崎潤一郎",
+    "work": "青春物語",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "谷崎潤一郎",
+    "work": "純粋に「日本的」な「鏡花世界」",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "谷崎潤一郎",
+    "work": "大切な雰囲気",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "谷崎潤一郎",
+    "work": "客ぎらい",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "内田魯庵",
+    "work": "温情の裕かな夏目さん",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "内田魯庵",
+    "work": "灰燼十万巻",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "内田魯庵",
+    "work": "駆逐されんとする文人",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "内田魯庵",
+    "work": "二十五年間の文人の社会的地位の進歩",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "内田魯庵",
+    "work": "文明国には必ず智識ある高等遊民あり",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "平林初之輔",
+    "work": "ウイツテ伯回想記その他",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "平林初之輔",
+    "work": "愛読作家についての断片",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "平林初之輔",
+    "work": "クローズアップ",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "平林初之輔",
+    "work": "伊豆の国にて",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "平林初之輔",
+    "work": "探偵小説の世界的流行",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岩野泡鳴",
+    "work": "塩原日記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岩野泡鳴",
+    "work": "地なる響",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "岩野泡鳴",
+    "work": "御霊うぶや",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "岩野泡鳴",
+    "work": "札幌の印象",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "岩野泡鳴",
+    "work": "黒き素船",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "木下杢太郎",
+    "work": "パンの会の回想",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "木下杢太郎",
+    "work": "北原白秋氏の肖像",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "木下杢太郎",
+    "work": "市街を散歩する人の心持",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "木下杢太郎",
+    "work": "海郷風物記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "木下杢太郎",
+    "work": "南蛮寺門前",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "杉田久女",
+    "work": "英彦山に登る",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "杉田久女",
+    "work": "桜花を詠める句",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "杉田久女",
+    "work": "朱欒の花のさく頃",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "杉田久女",
+    "work": "大正女流俳句の近代的特色",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "杉田久女",
+    "work": "女流俳句を味読す",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "百田宗治",
+    "work": "五月祭の朝",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "百田宗治",
+    "work": "地を掘る人達に",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "百田宗治",
+    "work": "君達に送る――新しい民衆の精神",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "百田宗治",
+    "work": "夕暮の別荘地に歩み入る兵士たち",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "百田宗治",
+    "work": "百鬼園讃",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "吉井勇",
+    "work": "青春回顧",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "吉井勇",
+    "work": "逢状",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "吉井勇",
+    "work": "雑魚寝",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "吉井勇",
+    "work": "酔狂録",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "吉井勇",
+    "work": "或る日の小せん",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岩本素白",
+    "work": "六日月",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "岩本素白",
+    "work": "雨の宿",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "岩本素白",
+    "work": "こがらし",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岩本素白",
+    "work": "寺町",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "岩本素白",
+    "work": "鰯",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "河井酔茗",
+    "work": "武甲山に登る",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "河井酔茗",
+    "work": "山の宿海の宿",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "河井酔茗",
+    "work": "山の歓喜",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "河井酔茗",
+    "work": "春の詩集",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "河井酔茗",
+    "work": "ゆづり葉",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "三木清",
+    "work": "思索者の日記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "三木清",
+    "work": "わが青春",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "三木清",
+    "work": "消息一通",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "三木清",
+    "work": "自己を中心に",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "三木清",
+    "work": "日記と自叙伝",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "九鬼周造",
+    "work": "かれいの贈物",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "九鬼周造",
+    "work": "伝統と進取",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "九鬼周造",
+    "work": "偶然の産んだ駄洒落",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "九鬼周造",
+    "work": "外来語所感",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "九鬼周造",
+    "work": "小唄のレコード",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "阿部次郎",
+    "work": "三太郎の日記　第一",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "阿部次郎",
+    "work": "三太郎の日記　第三",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "阿部次郎",
+    "work": "三太郎の日記　第二",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "阿部次郎",
+    "work": "合本三太郎の日記　序",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "阿部次郎",
+    "work": "合本三太郎の日記の後に",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "国木田独歩",
+    "work": "夜の赤坂",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "国木田独歩",
+    "work": "空知川の岸辺",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "国木田独歩",
+    "work": "武蔵野",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "国木田独歩",
+    "work": "詩想",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "国木田独歩",
+    "work": "湯ヶ原ゆき",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "上田敏",
+    "work": "海潮音",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "上田敏",
+    "work": "月",
+    "source_type": "essay",
+    "tone": "gold",
+    "mode": "prose"
+  },
+  {
+    "author": "上田敏",
+    "work": "さかほがひ",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "上田敏",
+    "work": "まちむすめ",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "上田敏",
+    "work": "牧羊神",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "小山清",
+    "work": "生い立ちの記",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "小山清",
+    "work": "落穂拾い",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "小山清",
+    "work": "西隣塾記",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "小山清",
+    "work": "遁走",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "小山清",
+    "work": "「晩年」によせて",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "河上肇",
+    "work": "随筆「断片」",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "河上肇",
+    "work": "御萩と七種粥",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "河上肇",
+    "work": "枕上浮雲",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "河上肇",
+    "work": "閉戸閑詠",
+    "source_type": "poetry",
+    "tone": "gold",
+    "mode": "poetry"
+  },
+  {
+    "author": "河上肇",
+    "work": "小国寡民",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "二葉亭四迷",
+    "work": "旅日記",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "二葉亭四迷",
+    "work": "遺言状・遺族善後策",
+    "source_type": "diary",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "二葉亭四迷",
+    "work": "露都雑記",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  },
+  {
+    "author": "二葉亭四迷",
+    "work": "予が半生の懺悔",
+    "source_type": "essay",
+    "tone": "blue",
+    "mode": "prose"
+  },
+  {
+    "author": "二葉亭四迷",
+    "work": "私は懐疑派だ",
+    "source_type": "essay",
+    "tone": "white",
+    "mode": "prose"
+  }
 ]

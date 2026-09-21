@@ -8,10 +8,10 @@ from collections import Counter
 from typing import Optional
 
 
-DEFAULT_MAX_QUOTES = 3500
+DEFAULT_MAX_QUOTES = 10000
 MIN_LEN = 12
 MAX_LEN = 100
-MAX_PER_AUTHOR = 100
+MAX_PER_AUTHOR = 140
 
 TONE_RATIOS = {
     "white": 0.25,
@@ -62,7 +62,8 @@ if os.path.exists(CATALOG_PATH):
 CONTEXTUAL_OPENINGS = re.compile(
     r"^(彼女|彼|その|この|あの|これ|それ|それから|この男|しかし|だが|だから|ところで|そして|"
     r"しかしながら|然し|然しながら|けれども|けれど|そこで|すると|そうして|こうして|さて|"
-    r"やがて|また|又この反対に|更に|なお|まず|まあ|即ち|あたかも|以上を要約|"
+    r"やがて|また|又この反対に|更に|なお|まず|まあ|なるほど|次に|後には|今夜は|"
+    r"そこに|ここへは|時々その|両君|われわれ|我々|こちら|この時|その後|即ち|あたかも|以上を要約|"
     r"其翌日|その翌日|あとは|十年も前には|若しあの時代|私、|多作のため|あんまり|何もしないばかり|"
     r"従って|したがって|しかるに|もっとも|尤も|実は|一方|要するに|今考えると|と[、，])"
 )
@@ -72,7 +73,7 @@ CONVERSATION_ENDINGS = re.compile(
 )
 
 INCOMPLETE_ENDINGS = re.compile(r"(?:、|，|て|ので|けれど|けれども)$")
-SPECIAL_CHARACTERS = re.compile(r"[�\uFFFD※]|［|］|〔|〕|／＼")
+SPECIAL_CHARACTERS = re.compile(r"[�\uFFFD※▼▲▽△◇◆■□]|［|］|〔|〕|／＼")
 SECTION_HEADING = re.compile(r"^[［【〈].+[］】〉]$")
 DEPENDENT_PHRASES = re.compile(
     r"(次のよう|次のやう|前述|上述|以上の|後述|その人|その時|そのため|このこと|この点|"
@@ -153,6 +154,8 @@ def standalone_score(text: str, source_type: str, mode: str) -> Optional[int]:
     if mode.startswith("poetry") and re.search(r"[「『].+[」』]の終りに$", text):
         return None
     if mode.startswith("poetry") and re.match(r"^[0-9〇一二三四五六七八九十]+[―—-]", text):
+        return None
+    if mode.startswith("poetry") and re.search(r"(?:^|\n)[0-9〇一二三四五六七八九十百]+月[0-9〇一二三四五六七八九十百]+日(?:$|\n)", text):
         return None
     if mode.startswith("poetry") and re.match(r"^(トンネルへ|すべてこれらの命題は)", text):
         return None

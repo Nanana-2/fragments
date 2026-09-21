@@ -25,3 +25,5 @@
 - エピクテトス: [Epictetus - Henri Bonnart engraving c. 1700.png](https://commons.wikimedia.org/wiki/File:Epictetus_-_Henri_Bonnart_engraving_c._1700.png)
 
 権利を安全に確認できる肖像がない作者は、文字アイコンを使用する。
+
+追加作者の肖像は `scripts/fetch_author_portraits.py` でWikidataの日本語Wikipedia対応項目が本人（human）であることを照合し、Wikimedia Commonsの `LicenseShortName` が Public domain / CC0 / PDM のものだけを取得する。作者ごとのWikidata ID、Commonsファイルページ、ライセンス、ローカルパスは `avatar_sources.json` に記録する。

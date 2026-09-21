@@ -1,0 +1,650 @@
+[
+  {
+    "author": "三好十郎",
+    "wikidata_id": "Q11354863",
+    "commons_file": "Juro Miyoshi 01.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Juro_Miyoshi_01.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11354863.jpg"
+  },
+  {
+    "author": "三好達治",
+    "wikidata_id": "Q1940955",
+    "commons_file": "Miyoshi Tatsuji.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Miyoshi_Tatsuji.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1940955.jpg"
+  },
+  {
+    "author": "三木清",
+    "wikidata_id": "Q1894578",
+    "commons_file": "Kiyoshi Miki.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kiyoshi_Miki.JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1894578.jpg"
+  },
+  {
+    "author": "上田敏",
+    "wikidata_id": "Q640564",
+    "commons_file": "UedaBin.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:UedaBin.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q640564.jpg"
+  },
+  {
+    "author": "中勘助",
+    "wikidata_id": "Q279987",
+    "commons_file": "Kansuke Naka 1935.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kansuke_Naka_1935.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q279987.jpg"
+  },
+  {
+    "author": "中谷宇吉郎",
+    "wikidata_id": "Q218021",
+    "commons_file": "Nakaya Ukichiro in 1946.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Nakaya_Ukichiro_in_1946.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q218021.jpg"
+  },
+  {
+    "author": "久保田万太郎",
+    "wikidata_id": "Q461320",
+    "commons_file": "Mantaro Kubota, March 1953.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mantaro_Kubota,_March_1953.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q461320.jpg"
+  },
+  {
+    "author": "二葉亭四迷",
+    "wikidata_id": "Q22665",
+    "commons_file": "Futabatei Shimei in 1908.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Futabatei_Shimei_in_1908.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q22665.jpg"
+  },
+  {
+    "author": "伊丹万作",
+    "wikidata_id": "Q973907",
+    "commons_file": "Mansaku Itami.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mansaku_Itami.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q973907.jpg"
+  },
+  {
+    "author": "伊藤左千夫",
+    "wikidata_id": "Q176579",
+    "commons_file": "Ito Sachio1.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ito_Sachio1.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q176579.jpg"
+  },
+  {
+    "author": "伊藤野枝",
+    "wikidata_id": "Q260984",
+    "commons_file": "Ito Noe 2.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ito_Noe_2.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q260984.jpg"
+  },
+  {
+    "author": "会津八一",
+    "wikidata_id": "Q411737",
+    "commons_file": "Aizu Yaichi.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Aizu_Yaichi.JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q411737.jpg"
+  },
+  {
+    "author": "佐藤垢石",
+    "wikidata_id": "Q11383867",
+    "commons_file": "Sato Koseki.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sato_Koseki.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11383867.jpg"
+  },
+  {
+    "author": "佐藤春夫",
+    "wikidata_id": "Q2226953",
+    "commons_file": "Haruo Sato.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Haruo_Sato.JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q2226953.jpg"
+  },
+  {
+    "author": "内村鑑三",
+    "wikidata_id": "Q485247",
+    "commons_file": "Uchimura Kanzo.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Uchimura_Kanzo.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q485247.jpg"
+  },
+  {
+    "author": "内田魯庵",
+    "wikidata_id": "Q11394384",
+    "commons_file": "Uchida-Roan.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Uchida-Roan.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11394384.jpg"
+  },
+  {
+    "author": "北村透谷",
+    "wikidata_id": "Q1064340",
+    "commons_file": "Kitamura Tokoku.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kitamura_Tokoku.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1064340.jpg"
+  },
+  {
+    "author": "北条民雄",
+    "wikidata_id": "Q1259446",
+    "commons_file": "Houzyoutamio.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Houzyoutamio.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1259446.jpg"
+  },
+  {
+    "author": "原民喜",
+    "wikidata_id": "Q248244",
+    "commons_file": "Tamiki Hara.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tamiki_Hara.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q248244.jpg"
+  },
+  {
+    "author": "吉井勇",
+    "wikidata_id": "Q3155124",
+    "commons_file": "Yoshii Isamu.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Yoshii_Isamu.JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q3155124.jpg"
+  },
+  {
+    "author": "吉川英治",
+    "wikidata_id": "Q221957",
+    "commons_file": "Eiji Yoshikawa.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Eiji_Yoshikawa.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q221957.jpg"
+  },
+  {
+    "author": "国木田独歩",
+    "wikidata_id": "Q374817",
+    "commons_file": "Doppo Kunikida.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Doppo_Kunikida.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q374817.jpg"
+  },
+  {
+    "author": "土井晩翠",
+    "wikidata_id": "Q1234919",
+    "commons_file": "Bansui Doi photographed by Shigeru Tamura.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bansui_Doi_photographed_by_Shigeru_Tamura.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1234919.jpg"
+  },
+  {
+    "author": "坂口安吾",
+    "wikidata_id": "Q132111",
+    "commons_file": "Ango Sakaguchi (cropped).jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ango_Sakaguchi_(cropped).jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q132111.jpg"
+  },
+  {
+    "author": "堀辰雄",
+    "wikidata_id": "Q961645",
+    "commons_file": "Photo-1935-HoriTatsuo.png",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Photo-1935-HoriTatsuo.png",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q961645.png"
+  },
+  {
+    "author": "夏目漱石",
+    "wikidata_id": "Q180903",
+    "commons_file": "Natsume Soseki photo.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Natsume_Soseki_photo.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q180903.jpg"
+  },
+  {
+    "author": "夢野久作",
+    "wikidata_id": "Q1005559",
+    "commons_file": "Kyusaku Yumeno.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kyusaku_Yumeno.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1005559.jpg"
+  },
+  {
+    "author": "大町桂月",
+    "wikidata_id": "Q11437999",
+    "commons_file": "Omachi Keigetsu.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Omachi_Keigetsu.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11437999.jpg"
+  },
+  {
+    "author": "太宰治",
+    "wikidata_id": "Q317685",
+    "commons_file": "Osamu Dazai.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Osamu_Dazai.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q317685.jpg"
+  },
+  {
+    "author": "室生犀星",
+    "wikidata_id": "Q331339",
+    "commons_file": "Saisei Muro 01.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Saisei_Muro_01.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q331339.jpg"
+  },
+  {
+    "author": "宮城道雄",
+    "wikidata_id": "Q1940929",
+    "commons_file": "Michio Miyagi.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Michio_Miyagi.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1940929.jpg"
+  },
+  {
+    "author": "宮本百合子",
+    "wikidata_id": "Q464756",
+    "commons_file": "Yuriko Miyamoto 01.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Yuriko_Miyamoto_01.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q464756.jpg"
+  },
+  {
+    "author": "富永太郎",
+    "wikidata_id": "Q1244061",
+    "commons_file": "Tominaga Taro.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tominaga_Taro.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1244061.jpg"
+  },
+  {
+    "author": "小川未明",
+    "wikidata_id": "Q343215",
+    "commons_file": "Mimei Ogawa 01.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mimei_Ogawa_01.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q343215.jpg"
+  },
+  {
+    "author": "小酒井不木",
+    "wikidata_id": "Q10529097",
+    "commons_file": "Kosakai Fuboku.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kosakai_Fuboku.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q10529097.jpg"
+  },
+  {
+    "author": "尾形亀之助",
+    "wikidata_id": "Q11465324",
+    "commons_file": "Ogata Kamenosuke.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ogata_Kamenosuke.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11465324.jpg"
+  },
+  {
+    "author": "山之口貘",
+    "wikidata_id": "Q11466243",
+    "commons_file": "Yamanoguci Bak.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Yamanoguci_Bak.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11466243.jpg"
+  },
+  {
+    "author": "山村暮鳥",
+    "wikidata_id": "Q984441",
+    "commons_file": "Yamamura Bocō.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Yamamura_Boc%C5%8D.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q984441.jpg"
+  },
+  {
+    "author": "岡本綺堂",
+    "wikidata_id": "Q2743605",
+    "commons_file": "Kido okamoto.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kido_okamoto.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q2743605.jpg"
+  },
+  {
+    "author": "岸田国士",
+    "wikidata_id": "Q1700094",
+    "commons_file": "Kishida Kunio 19500304 (cropped).JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kishida_Kunio_19500304_(cropped).JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1700094.jpg"
+  },
+  {
+    "author": "島崎藤村",
+    "wikidata_id": "Q1093783",
+    "commons_file": "Shimazaki Toson2.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Shimazaki_Toson2.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1093783.jpg"
+  },
+  {
+    "author": "平林初之輔",
+    "wikidata_id": "Q11483108",
+    "commons_file": "Hirabayashi Hatsunosuke.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Hirabayashi_Hatsunosuke.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11483108.jpg"
+  },
+  {
+    "author": "幸田露伴",
+    "wikidata_id": "Q1038466",
+    "commons_file": "Rohan Koda.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Rohan_Koda.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1038466.jpg"
+  },
+  {
+    "author": "徳冨蘆花",
+    "wikidata_id": "Q1396764",
+    "commons_file": "TOKUTOMI ROKA at 1920.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:TOKUTOMI_ROKA_at_1920.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1396764.jpg"
+  },
+  {
+    "author": "折口信夫",
+    "wikidata_id": "Q3482286",
+    "commons_file": "Orikuchi.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Orikuchi.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q3482286.jpg"
+  },
+  {
+    "author": "斎藤茂吉",
+    "wikidata_id": "Q3319377",
+    "commons_file": "Saitō Mokichi photographed by Shigeru Tamura.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sait%C5%8D_Mokichi_photographed_by_Shigeru_Tamura.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q3319377.jpg"
+  },
+  {
+    "author": "新渡戸稲造",
+    "wikidata_id": "Q12696",
+    "commons_file": "Monsieur Inazō Nitobe.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Monsieur_Inaz%C5%8D_Nitobe.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q12696.jpg"
+  },
+  {
+    "author": "新美南吉",
+    "wikidata_id": "Q1989968",
+    "commons_file": "NiimiNankichi-Portrait-ca1941-42.png",
+    "source_url": "https://commons.wikimedia.org/wiki/File:NiimiNankichi-Portrait-ca1941-42.png",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1989968.png"
+  },
+  {
+    "author": "有島武郎",
+    "wikidata_id": "Q577180",
+    "commons_file": "Arishima Takeo.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Arishima_Takeo.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q577180.jpg"
+  },
+  {
+    "author": "木下杢太郎",
+    "wikidata_id": "Q1343550",
+    "commons_file": "Masao Ohta1934.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Masao_Ohta1934.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1343550.jpg"
+  },
+  {
+    "author": "林芙美子",
+    "wikidata_id": "Q445839",
+    "commons_file": "Fumiko-Hayashi-1.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Fumiko-Hayashi-1.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q445839.jpg"
+  },
+  {
+    "author": "梶井基次郎",
+    "wikidata_id": "Q519158",
+    "commons_file": "Motojirō Kajii, January 1931.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Motojir%C5%8D_Kajii,_January_1931.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q519158.jpg"
+  },
+  {
+    "author": "森鴎外",
+    "wikidata_id": "Q356960",
+    "commons_file": "Mori Ogai in the atelier of Sculptor Takeishi Kozaburo in 1916.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mori_Ogai_in_the_atelier_of_Sculptor_Takeishi_Kozaburo_in_1916.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q356960.jpg"
+  },
+  {
+    "author": "横光利一",
+    "wikidata_id": "Q908573",
+    "commons_file": "Riichi Yokomitsu 01.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Riichi_Yokomitsu_01.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q908573.jpg"
+  },
+  {
+    "author": "正宗白鳥",
+    "wikidata_id": "Q532541",
+    "commons_file": "Masamune Hakucho.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Masamune_Hakucho.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q532541.jpg"
+  },
+  {
+    "author": "永井荷風",
+    "wikidata_id": "Q530588",
+    "commons_file": "Kafū Nagai 1927.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kaf%C5%AB_Nagai_1927.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q530588.jpg"
+  },
+  {
+    "author": "河上肇",
+    "wikidata_id": "Q1135505",
+    "commons_file": "Kawakami Hajime.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kawakami_Hajime.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1135505.jpg"
+  },
+  {
+    "author": "河井酔茗",
+    "wikidata_id": "Q11553355",
+    "commons_file": "Kawai Suimei.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kawai_Suimei.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11553355.jpg"
+  },
+  {
+    "author": "泉鏡花",
+    "wikidata_id": "Q1064272",
+    "commons_file": "Kyoka Izumi.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kyoka_Izumi.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1064272.jpg"
+  },
+  {
+    "author": "淡島寒月",
+    "wikidata_id": "Q11559764",
+    "commons_file": "Awashima Kangetsu.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Awashima_Kangetsu.JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11559764.jpg"
+  },
+  {
+    "author": "片山広子",
+    "wikidata_id": "Q1262037",
+    "commons_file": "Hiroko Katayama.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Hiroko_Katayama.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1262037.jpg"
+  },
+  {
+    "author": "牧野信一",
+    "wikidata_id": "Q597627",
+    "commons_file": "Makino-shinichi.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Makino-shinichi.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q597627.jpg"
+  },
+  {
+    "author": "田山花袋",
+    "wikidata_id": "Q332975",
+    "commons_file": "Tayama Katai, November 1927.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tayama_Katai,_November_1927.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q332975.jpg"
+  },
+  {
+    "author": "百田宗治",
+    "wikidata_id": "Q11580822",
+    "commons_file": "Momota Soji.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Momota_Soji.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11580822.jpg"
+  },
+  {
+    "author": "立原道造",
+    "wikidata_id": "Q6837958",
+    "commons_file": "Tachihara Michizo at Ginza.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tachihara_Michizo_at_Ginza.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q6837958.jpg"
+  },
+  {
+    "author": "竹久夢二",
+    "wikidata_id": "Q1386248",
+    "commons_file": "Yumeji Takehisa.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Yumeji_Takehisa.JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1386248.jpg"
+  },
+  {
+    "author": "織田作之助",
+    "wikidata_id": "Q2856394",
+    "commons_file": "Sakunosuke Oda.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sakunosuke_Oda.JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q2856394.jpg"
+  },
+  {
+    "author": "若山牧水",
+    "wikidata_id": "Q532557",
+    "commons_file": "若山 牧水.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:%E8%8B%A5%E5%B1%B1_%E7%89%A7%E6%B0%B4.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q532557.jpg"
+  },
+  {
+    "author": "菊池寛",
+    "wikidata_id": "Q647687",
+    "commons_file": "Photo-Author-Kan-Kikuchi-Smoking.png",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Photo-Author-Kan-Kikuchi-Smoking.png",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q647687.png"
+  },
+  {
+    "author": "蒲原有明",
+    "wikidata_id": "Q1722870",
+    "commons_file": "Kambara Ariake.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kambara_Ariake.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q1722870.jpg"
+  },
+  {
+    "author": "薄田泣菫",
+    "wikidata_id": "Q995219",
+    "commons_file": "Suzukida Kyûkin.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Suzukida_Ky%C3%BBkin.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q995219.jpg"
+  },
+  {
+    "author": "谷崎潤一郎",
+    "wikidata_id": "Q316213",
+    "commons_file": "Junichiro Tanizaki 02.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Junichiro_Tanizaki_02.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q316213.jpg"
+  },
+  {
+    "author": "豊島与志雄",
+    "wikidata_id": "Q11633503",
+    "commons_file": "Yoshio Toyoshima, 1954.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Yoshio_Toyoshima,_1954.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11633503.jpg"
+  },
+  {
+    "author": "辰野隆",
+    "wikidata_id": "Q11637913",
+    "commons_file": "Tatsuno Yutaka 1955.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tatsuno_Yutaka_1955.JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11637913.jpg"
+  },
+  {
+    "author": "辻潤",
+    "wikidata_id": "Q3189987",
+    "commons_file": "Tsuji jun.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tsuji_jun.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q3189987.jpg"
+  },
+  {
+    "author": "野上豊一郎",
+    "wikidata_id": "Q11644976",
+    "commons_file": "Toyoichiro Nogami 1939.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Toyoichiro_Nogami_1939.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11644976.jpg"
+  },
+  {
+    "author": "野口雨情",
+    "wikidata_id": "Q2748367",
+    "commons_file": "Noguchi Ujo.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Noguchi_Ujo.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q2748367.jpg"
+  },
+  {
+    "author": "野村胡堂",
+    "wikidata_id": "Q6425512",
+    "commons_file": "Kodo Nomura 01.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kodo_Nomura_01.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q6425512.jpg"
+  },
+  {
+    "author": "長谷川時雨",
+    "wikidata_id": "Q11653856",
+    "commons_file": "Shigure Hasegawa.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Shigure_Hasegawa.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11653856.jpg"
+  },
+  {
+    "author": "阿部次郎",
+    "wikidata_id": "Q11657866",
+    "commons_file": "Jiro Abe.JPG",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Jiro_Abe.JPG",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q11657866.jpg"
+  },
+  {
+    "author": "高浜虚子",
+    "wikidata_id": "Q743767",
+    "commons_file": "Kyoshi Takahama.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kyoshi_Takahama.jpg",
+    "license": "Public domain",
+    "local_path": "./avatars/wikidata-q743767.jpg"
+  }
+]

@@ -426,82 +426,49 @@
       }
     });
 
-    // 4. 重み付き推薦ロジック
-    const toneWeights = { white: 34, black: 18, blue: 14, gold: 34 };
+    // 4. 自然な重み付きシャッフル
     const sessionSeenIds = new Set();
-    let lastPickedTone = null;
-    let lastPickedAuthor = null;
-    let authorRunLength = 0;
-    let cardsUntilContrast = 4 + Math.floor(Math.random() * 7);
+    const recentAuthors = [];
+    let feedQueue = [];
 
-    function pickTone() {
-      const entries = Object.entries(toneWeights);
-      let random = Math.random() * entries.reduce((sum, [, weight]) => sum + weight, 0);
-      for (const [tone, weight] of entries) {
-        if (random < weight) return tone;
-        random -= weight;
-      }
-      return 'white';
+    function weightedShuffle(items) {
+      const authorTotals = items.reduce((totals, item) => {
+        totals[item.author] = (totals[item.author] || 0) + 1;
+        return totals;
+      }, {});
+      return items
+        .map(item => {
+          const affinity = Math.min(authorAffinities[item.author] || 0, 8);
+          const abundance = Math.sqrt(authorTotals[item.author] || 1);
+          const weight = (1 + affinity * 0.14) / abundance;
+          return { item, key: Math.log(Math.max(Math.random(), Number.EPSILON)) / weight };
+        })
+        .sort((a, b) => b.key - a.key)
+        .map(entry => entry.item);
+    }
+
+    function refillFeedQueue() {
+      if (sessionSeenIds.size >= masterData.length) sessionSeenIds.clear();
+      const unseen = masterData.filter(item => !sessionSeenIds.has(item.id));
+      const sample = weightedShuffle(unseen).slice(0, Math.min(120, unseen.length));
+      feedQueue = weightedShuffle(sample);
     }
 
     function pickNextItem() {
-      if (sessionSeenIds.size >= masterData.length) sessionSeenIds.clear();
-      let unseen = masterData.filter(item => !sessionSeenIds.has(item.id));
-      if (unseen.length === 0) {
-        sessionSeenIds.clear();
-        unseen = masterData.slice();
+      if (feedQueue.length === 0) refillFeedQueue();
+      if (feedQueue.length === 0) return fallbackData[0];
+
+      // 三連続だけを避ける。作者や tone の順番自体は固定せず、偏りや連続も自然に残す。
+      let index = 0;
+      const latestAuthor = recentAuthors[recentAuthors.length - 1];
+      if (recentAuthors.length >= 2 && latestAuthor === recentAuthors[recentAuthors.length - 2]) {
+        const alternative = feedQueue.slice(0, 12).findIndex(item => item.author !== latestAuthor);
+        if (alternative >= 0) index = alternative;
       }
-
-      let desiredTone;
-      if (cardsUntilContrast <= 0) {
-        const contrasts = ['black', 'blue', 'gold'].filter(tone => tone !== lastPickedTone);
-        desiredTone = contrasts[Math.floor(Math.random() * contrasts.length)];
-        cardsUntilContrast = 4 + Math.floor(Math.random() * 8);
-      } else {
-        cardsUntilContrast -= 1;
-        desiredTone = lastPickedTone && Math.random() < 0.28 ? lastPickedTone : pickTone();
-      }
-
-      let candidates = unseen.filter(item => (item.tone || 'white') === desiredTone);
-      if (candidates.length === 0) candidates = unseen;
-
-      // ときどき同じ作家をもう一度出し、それ以外は収録数を平方根で弱めた偏りを使う。
-      if (lastPickedAuthor && authorRunLength < 2 && Math.random() < 0.12) {
-        const sameAuthor = candidates.filter(item => item.author === lastPickedAuthor);
-        if (sameAuthor.length > 0) {
-          const picked = sameAuthor[Math.floor(Math.random() * sameAuthor.length)];
-          sessionSeenIds.add(picked.id);
-          authorRunLength += 1;
-          lastPickedTone = picked.tone || 'white';
-          return picked;
-        }
-      }
-
-      const candidateAuthors = Array.from(new Set(candidates.map(item => item.author)));
-      let totalWeight = 0;
-      const weights = candidateAuthors.map(author => {
-        const affinity = authorAffinities[author] || 0;
-        const availableCount = candidates.filter(item => item.author === author).length;
-        const weight = Math.sqrt(availableCount) * (1.0 + Math.min(affinity, 8) * 0.3);
-        totalWeight += weight;
-        return weight;
-      });
-
-      let random = Math.random() * totalWeight;
-      let pickedAuthor = candidateAuthors[candidateAuthors.length - 1];
-      for (let i = 0; i < candidateAuthors.length; i++) {
-        if (random < weights[i]) {
-          pickedAuthor = candidateAuthors[i];
-          break;
-        }
-        random -= weights[i];
-      }
-      const authorCandidates = candidates.filter(item => item.author === pickedAuthor);
-      const picked = authorCandidates[Math.floor(Math.random() * authorCandidates.length)];
+      const [picked] = feedQueue.splice(index, 1);
       sessionSeenIds.add(picked.id);
-      authorRunLength = picked.author === lastPickedAuthor ? authorRunLength + 1 : 1;
-      lastPickedAuthor = picked.author;
-      lastPickedTone = picked.tone || 'white';
+      recentAuthors.push(picked.author);
+      if (recentAuthors.length > 2) recentAuthors.shift();
       return picked;
     }
 
@@ -760,12 +727,19 @@
     // 外部JSON読み込み（存在しない場合はフォールバックのまま動作）
     async function init() {
       try {
-        const res = await fetch('./quotes.json?v=20260921-3500');
-        if (res.ok) {
-          const json = await res.json();
+        const [quoteResponse, avatarResponse] = await Promise.all([
+          fetch('./quotes.json?v=20260922-10000'),
+          fetch('./avatar_manifest.json?v=20260922').catch(() => null)
+        ]);
+        if (quoteResponse.ok) {
+          const json = await quoteResponse.json();
           if (Array.isArray(json) && json.length > 0) {
             masterData = json;
           }
+        }
+        if (avatarResponse && avatarResponse.ok) {
+          const avatars = await avatarResponse.json();
+          if (avatars && typeof avatars === 'object') Object.assign(authorAvatars, avatars);
         }
       } catch (e) {
         // quotes.json がない環境では fallbackData を維持

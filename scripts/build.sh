@@ -7,7 +7,7 @@ dist_dir="$project_dir/dist"
 rm -rf "$dist_dir"
 mkdir -p "$dist_dir/client" "$dist_dir/server"
 
-for file in index.html quotes.json manifest.json icon-192.png icon-512.png ogp.png; do
+for file in index.html quotes.json avatar_manifest.json manifest.json icon-192.png icon-512.png ogp.png; do
   cp "$project_dir/$file" "$dist_dir/client/$file"
 done
 
