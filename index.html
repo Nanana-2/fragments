@@ -743,7 +743,7 @@
     // 外部JSON読み込み（存在しない場合はフォールバックのまま動作）
     async function init() {
       try {
-        const res = await fetch('./quotes.json');
+        const res = await fetch('./quotes.json?v=20260921-800');
         if (res.ok) {
           const json = await res.json();
           if (Array.isArray(json) && json.length > 0) {
