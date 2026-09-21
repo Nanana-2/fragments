@@ -8,10 +8,10 @@ from collections import Counter
 from typing import Optional
 
 
-DEFAULT_MAX_QUOTES = 800
+DEFAULT_MAX_QUOTES = 3500
 MIN_LEN = 12
 MAX_LEN = 100
-MAX_PER_AUTHOR = 60
+MAX_PER_AUTHOR = 100
 
 TONE_RATIOS = {
     "white": 0.25,
@@ -48,10 +48,23 @@ SOURCE_PROFILES = {
     "回想録": {"source_type": "essay", "tone": "white", "mode": "prose"},
 }
 
+CATALOG_PATH = os.path.join(os.path.dirname(__file__), "content_catalog.json")
+SOURCE_PROFILE_OVERRIDES = {}
+if os.path.exists(CATALOG_PATH):
+    with open(CATALOG_PATH, "r", encoding="utf-8") as catalog_source:
+        for catalog_item in json.load(catalog_source):
+            SOURCE_PROFILE_OVERRIDES[(catalog_item["author"], catalog_item["work"])] = {
+                "source_type": catalog_item["source_type"],
+                "tone": catalog_item["tone"],
+                "mode": catalog_item["mode"],
+            }
+
 CONTEXTUAL_OPENINGS = re.compile(
     r"^(彼女|彼|その|この|あの|これ|それ|それから|この男|しかし|だが|だから|ところで|そして|"
-    r"けれども|けれど|そこで|すると|そうして|こうして|さて|やがて|また一方|"
-    r"従って|したがって|しかるに|なお|もっとも|尤も|実は|一方|要するに|今考えると)"
+    r"しかしながら|然し|然しながら|けれども|けれど|そこで|すると|そうして|こうして|さて|"
+    r"やがて|また|又この反対に|更に|なお|まず|まあ|即ち|あたかも|以上を要約|"
+    r"其翌日|その翌日|あとは|十年も前には|若しあの時代|私、|多作のため|あんまり|何もしないばかり|"
+    r"従って|したがって|しかるに|もっとも|尤も|実は|一方|要するに|今考えると|と[、，])"
 )
 
 CONVERSATION_ENDINGS = re.compile(
@@ -63,7 +76,9 @@ SPECIAL_CHARACTERS = re.compile(r"[�\uFFFD※]|［|］|〔|〕|／＼")
 SECTION_HEADING = re.compile(r"^[［【〈].+[］】〉]$")
 DEPENDENT_PHRASES = re.compile(
     r"(次のよう|次のやう|前述|上述|以上の|後述|その人|その時|そのため|このこと|この点|"
-    r"この場合|これを読|それについて|さう云ふ|そういう|と言うので|といふので)"
+    r"この場合|これを読|それについて|さう云ふ|そういう|と言うので|といふので|"
+    r"右のよう|右のやう|例に依って|例によって|誰も言わなかった|氏の弱点|彼等のこの|"
+    r"私の家のもの|それを話す時|諸兄の署名|父は或人|ある人の言に)"
 )
 POETRY_META = re.compile(
     r"(霊前|本書|修証義|序に代|序文|青空文庫|底本|初出|編者|著者|選句|句集|改版|昭和|明治|大正|西暦|年作|月作)"
@@ -129,9 +144,13 @@ def standalone_score(text: str, source_type: str, mode: str) -> Optional[int]:
         return None
     if mode.startswith("prose") and DEPENDENT_PHRASES.search(text):
         return None
+    if mode.startswith("prose") and (text.startswith(("「", "『", "……")) or re.search(r"[」』].+", text)):
+        return None
     if mode.startswith("prose") and re.search(r"(?:（[一二三四五六七八九十]+月[^）]*）|^[（(][月火水木金土日][）)])", text):
         return None
     if mode.startswith("poetry") and POETRY_META.search(text):
+        return None
+    if mode.startswith("poetry") and re.search(r"[「『].+[」』]の終りに$", text):
         return None
     if mode.startswith("poetry") and re.match(r"^[0-9〇一二三四五六七八九十]+[―—-]", text):
         return None
@@ -150,6 +169,8 @@ def standalone_score(text: str, source_type: str, mode: str) -> Optional[int]:
     if text.count("（") != text.count("）"):
         return None
     if CONVERSATION_ENDINGS.search(text) or INCOMPLETE_ENDINGS.search(text):
+        return None
+    if mode.startswith("prose") and re.search(r"(?:飲ませ|行って|なって|あって|して|見て|聞いて|思って|言って)。$", text):
         return None
     if re.search(r"[、，：；（「『—―]$", text):
         return None
@@ -271,17 +292,19 @@ def read_text(filepath: str) -> Optional[str]:
 def select_balanced(quotes_by_work: list[list[dict]], max_quotes: int) -> list[dict]:
     selected = []
     selected_ids = set()
+    selected_texts = set()
     author_counts = Counter()
     targets = {tone: round(max_quotes * ratio) for tone, ratio in TONE_RATIOS.items()}
     targets["white"] += max_quotes - sum(targets.values())
 
     def add(item: dict, enforce_cap: bool = True) -> bool:
-        if item["id"] in selected_ids:
+        if item["id"] in selected_ids or item["text"] in selected_texts:
             return False
         if enforce_cap and author_counts[item["author"]] >= MAX_PER_AUTHOR:
             return False
         selected.append(item)
         selected_ids.add(item["id"])
+        selected_texts.add(item["text"])
         author_counts[item["author"]] += 1
         return True
 
@@ -322,7 +345,7 @@ def process_directory(input_dir: str = "./texts", output_file: str = "quotes.jso
         author = parts[0] if parts else "不明"
         work = parts[1] if len(parts) > 1 else "無題"
         year = parts[2] if len(parts) > 2 else ""
-        profile = SOURCE_PROFILES.get(work)
+        profile = SOURCE_PROFILE_OVERRIDES.get((author, work), SOURCE_PROFILES.get(work))
         if profile is None:
             print(f"対象外: {author}『{work}』")
             continue

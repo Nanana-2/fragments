@@ -2,6 +2,8 @@
 
 本文は、著作権が消滅した著者・翻訳者による青空文庫収録テキスト、またはパブリックドメイン英訳を底本にした本プロジェクト独自訳から収集する。
 
+追加した国内30名・78作品は、青空文庫の[公開作品CSV](https://www.aozora.gr.jp/index_pages/list_person_all_extended_utf8.zip)から、作品・人物の著作権フラグがともに「なし」のものだけを取得する。選定一覧は `content_catalog.json`、取得した図書カードとテキストのURLは `aozora_sources.json` に記録する。
+
 ## 青空文庫
 
 - 中島敦『和歌でない歌』: https://www.aozora.gr.jp/cards/000119/card43043.html

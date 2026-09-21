@@ -427,43 +427,62 @@
     });
 
     // 4. 重み付き推薦ロジック
-    const toneWeights = { white: 35, black: 20, blue: 15, gold: 30 };
-    const recentPostIds = [];
-    const recentTones = [];
-    const recentAuthors = [];
+    const toneWeights = { white: 34, black: 18, blue: 14, gold: 34 };
+    const sessionSeenIds = new Set();
+    let lastPickedTone = null;
+    let lastPickedAuthor = null;
+    let authorRunLength = 0;
+    let cardsUntilContrast = 4 + Math.floor(Math.random() * 7);
 
     function pickTone() {
-      const adjusted = Object.entries(toneWeights).map(([tone, weight]) => ({
-        tone,
-        weight: recentTones.includes(tone) ? weight * 0.25 : weight
-      }));
-      let random = Math.random() * adjusted.reduce((sum, item) => sum + item.weight, 0);
-      for (const item of adjusted) {
-        if (random < item.weight) return item.tone;
-        random -= item.weight;
+      const entries = Object.entries(toneWeights);
+      let random = Math.random() * entries.reduce((sum, [, weight]) => sum + weight, 0);
+      for (const [tone, weight] of entries) {
+        if (random < weight) return tone;
+        random -= weight;
       }
       return 'white';
     }
 
     function pickNextItem() {
-      const desiredTone = pickTone();
-      let candidates = masterData.filter(item =>
-        (item.tone || 'white') === desiredTone && !recentPostIds.includes(item.id)
-      );
-      if (candidates.length === 0) {
-        candidates = masterData.filter(item => !recentPostIds.includes(item.id));
+      if (sessionSeenIds.size >= masterData.length) sessionSeenIds.clear();
+      let unseen = masterData.filter(item => !sessionSeenIds.has(item.id));
+      if (unseen.length === 0) {
+        sessionSeenIds.clear();
+        unseen = masterData.slice();
       }
-      if (candidates.length === 0) candidates = masterData;
 
-      const freshAuthors = candidates.filter(item => !recentAuthors.includes(item.author));
-      if (freshAuthors.length > 0) candidates = freshAuthors;
+      let desiredTone;
+      if (cardsUntilContrast <= 0) {
+        const contrasts = ['black', 'blue', 'gold'].filter(tone => tone !== lastPickedTone);
+        desiredTone = contrasts[Math.floor(Math.random() * contrasts.length)];
+        cardsUntilContrast = 4 + Math.floor(Math.random() * 8);
+      } else {
+        cardsUntilContrast -= 1;
+        desiredTone = lastPickedTone && Math.random() < 0.28 ? lastPickedTone : pickTone();
+      }
 
-      // 断片数の多い作家だけが有利にならないよう、先に作家を選んでから一篇を選ぶ。
+      let candidates = unseen.filter(item => (item.tone || 'white') === desiredTone);
+      if (candidates.length === 0) candidates = unseen;
+
+      // ときどき同じ作家をもう一度出し、それ以外は収録数を平方根で弱めた偏りを使う。
+      if (lastPickedAuthor && authorRunLength < 2 && Math.random() < 0.12) {
+        const sameAuthor = candidates.filter(item => item.author === lastPickedAuthor);
+        if (sameAuthor.length > 0) {
+          const picked = sameAuthor[Math.floor(Math.random() * sameAuthor.length)];
+          sessionSeenIds.add(picked.id);
+          authorRunLength += 1;
+          lastPickedTone = picked.tone || 'white';
+          return picked;
+        }
+      }
+
       const candidateAuthors = Array.from(new Set(candidates.map(item => item.author)));
       let totalWeight = 0;
       const weights = candidateAuthors.map(author => {
         const affinity = authorAffinities[author] || 0;
-        const weight = 1.0 + Math.min(affinity, 8) * 0.4;
+        const availableCount = candidates.filter(item => item.author === author).length;
+        const weight = Math.sqrt(availableCount) * (1.0 + Math.min(affinity, 8) * 0.3);
         totalWeight += weight;
         return weight;
       });
@@ -479,12 +498,10 @@
       }
       const authorCandidates = candidates.filter(item => item.author === pickedAuthor);
       const picked = authorCandidates[Math.floor(Math.random() * authorCandidates.length)];
-      recentPostIds.push(picked.id);
-      if (recentPostIds.length > 40) recentPostIds.shift();
-      recentTones.push(picked.tone || 'white');
-      if (recentTones.length > 2) recentTones.shift();
-      recentAuthors.push(picked.author);
-      if (recentAuthors.length > 6) recentAuthors.shift();
+      sessionSeenIds.add(picked.id);
+      authorRunLength = picked.author === lastPickedAuthor ? authorRunLength + 1 : 1;
+      lastPickedAuthor = picked.author;
+      lastPickedTone = picked.tone || 'white';
       return picked;
     }
 
@@ -743,7 +760,7 @@
     // 外部JSON読み込み（存在しない場合はフォールバックのまま動作）
     async function init() {
       try {
-        const res = await fetch('./quotes.json?v=20260921-800');
+        const res = await fetch('./quotes.json?v=20260921-3500');
         if (res.ok) {
           const json = await res.json();
           if (Array.isArray(json) && json.length > 0) {
