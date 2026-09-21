@@ -11,4 +11,6 @@ for file in index.html quotes.json manifest.json icon-192.png icon-512.png ogp.p
   cp "$project_dir/$file" "$dist_dir/client/$file"
 done
 
+cp -R "$project_dir/avatars" "$dist_dir/client/avatars"
+
 cp "$project_dir/worker.js" "$dist_dir/server/index.js"

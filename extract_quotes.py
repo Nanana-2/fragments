@@ -1,58 +1,79 @@
 # File: extract_quotes.py
-import re
-import json
 import glob
-import os
 import hashlib
+import json
+import os
+import re
+from collections import Counter
 from typing import Optional
 
-DEFAULT_MAX_QUOTES = 600
+
+DEFAULT_MAX_QUOTES = 360
+MIN_LEN = 12
+MAX_LEN = 100
+MAX_PER_AUTHOR = 50
 
 TONE_RATIOS = {
-    "white": 0.35,
+    "white": 0.25,
     "black": 0.25,
-    "blue": 0.25,
-    "gold": 0.15,
+    "blue": 0.15,
+    "gold": 0.35,
 }
 
-MIN_QUALITY = {
-    "fiction": 124,
-    "classic": 132,
-    "essay": 122,
-    "diary": 110,
-    "poetry": 128,
-    "aphorism": 145,
-}
-
+# 長編小説は意図的に対象外。短詩、箴言、身辺随筆・日記だけを明示的に許可する。
 SOURCE_PROFILES = {
-    "山羊の歌": {"source_type": "poetry", "tone": "gold"},
-    "青猫": {"source_type": "poetry", "tone": "gold"},
-    "侏儒の言葉": {"source_type": "aphorism", "tone": "black"},
-    "続堕落論": {"source_type": "essay", "tone": "black"},
-    "現代訳論語": {"source_type": "classic", "tone": "blue"},
-    "法句経": {"source_type": "classic", "tone": "blue"},
-    "一日中の楽しき時刻": {"source_type": "diary", "tone": "white"},
-    "科学者とあたま": {"source_type": "essay", "tone": "blue"},
-    "病牀六尺": {"source_type": "diary", "tone": "white"},
-    "料理の秘訣": {"source_type": "essay", "tone": "white"},
-    "行乞記": {"source_type": "diary", "tone": "white"},
-    "小学生のとき与へられた教訓": {"source_type": "essay", "tone": "white"},
-    "回想録": {"source_type": "essay", "tone": "white"},
+    "一握の砂": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "悲しき玩具": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "尾崎放哉選句集": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "草木塔": {"source_type": "poetry", "tone": "gold", "mode": "poetry"},
+    "侏儒の言葉": {"source_type": "aphorism", "tone": "black", "mode": "prose"},
+    "科学者とあたま": {"source_type": "essay", "tone": "blue", "mode": "prose"},
+    "行乞記": {"source_type": "diary", "tone": "white", "mode": "prose"},
+    "一日中の楽しき時刻": {"source_type": "diary", "tone": "white", "mode": "prose"},
+    "病牀六尺": {"source_type": "diary", "tone": "white", "mode": "prose"},
+    "料理の秘訣": {"source_type": "essay", "tone": "white", "mode": "prose"},
+    "小学生のとき与へられた教訓": {"source_type": "essay", "tone": "white", "mode": "prose"},
+    "回想録": {"source_type": "essay", "tone": "white", "mode": "prose"},
 }
 
 CONTEXTUAL_OPENINGS = re.compile(
-    r'^(そして|しかし|けれども|けれど|だが|それから|そこで|すると|ところが|'
-    r'のみならず|また一方|つまり|こうして|そうして|さて|やがて|いきなり|'
-    r'もちろん|実は|もっとも|その|この|あの|それは|これは|彼は|彼女は)'
+    r"^(彼女|彼|その|この|あの|それから|この男|しかし|だが|だから|ところで|そして|"
+    r"けれども|けれど|そこで|すると|そうして|こうして|さて|やがて|また一方|"
+    r"従って|したがって|しかるに|なお|もっとも|尤も|実は|一方|要するに)"
 )
 
-ATTRIBUTION_ONLY_ENDINGS = re.compile(
-    r'(言|云|答|尋|たず|訊|話|返事|質問|叫|怒鳴|説明)\w{0,8}(ました|ます|った|いう|云う)。?$'
+CONVERSATION_ENDINGS = re.compile(
+    r"(?:と(?:言|云|答|呟|つぶや)[^。]{0,8}(?:た|った|ました|ます)。?|[」』])$"
 )
+
+INCOMPLETE_ENDINGS = re.compile(r"(?:、|，|て|ので|けれど|けれども)$")
+SPECIAL_CHARACTERS = re.compile(r"[�\uFFFD※]|［|］|〔|〕|／＼")
+SECTION_HEADING = re.compile(r"^[［【〈].+[］】〉]$")
+DEPENDENT_PHRASES = re.compile(
+    r"(次のよう|次のやう|前述|上述|以上の|後述|その人|その時|そのため|このこと|この点|"
+    r"この場合|これを読|それについて|さう云ふ|そういう|と言うので|といふので)"
+)
+POETRY_META = re.compile(
+    r"(霊前|本書|修証義|序に代|青空文庫|底本|初出|編者|選句|句集|改版|昭和|明治|大正|年作|月作)"
+)
+
+
+def clean_aozora_text(raw_text: str) -> str:
+    """青空文庫のヘッダー、フッター、ルビ、注記を除去する。"""
+    text = raw_text
+    if "-------" in text:
+        text = text.split("-------")[-1]
+    if "底本：" in text:
+        text = text.split("底本：")[0]
+    text = re.sub(r"［＃[^］]+］", "", text)
+    text = re.sub(r"《[^》]+》", "", text)
+    text = text.replace("｜", "")
+    text = re.sub(r"\r\n|\r", "\n", text)
+    return text.strip()
 
 
 def strip_outer_quote(text: str) -> str:
-    """断片全体を包む一組だけの鉤括弧を外す。複数発言の括弧は維持する。"""
+    """断片全体を包む一組だけの鉤括弧を外す。"""
     pairs = {"「": "」", "『": "』"}
     opening = text[:1]
     closing = pairs.get(opening)
@@ -69,233 +90,226 @@ def strip_outer_quote(text: str) -> str:
                 return text
     return text[1:-1].strip() if depth == 0 else text
 
-def clean_aozora_text(raw_text: str) -> str:
-    """
-    青空文庫テキスト特有のルビ記法・注記タグ・ヘッダー/フッターを除去する
-    """
-    text = raw_text
 
-    # ヘッダー情報の切断（------ で囲まれた書誌情報以降を本文とする）
-    if "-------" in text:
-        parts = text.split("-------")
-        text = parts[-1]
-
-    # 底本情報以降のフッターを切断
-    if "底本：" in text:
-        text = text.split("底本：")[0]
-
-    # 青空文庫タグの除去
-    text = re.sub(r'［＃[^］]+］', '', text)       # ［＃見出し］［＃改ページ］等
-    text = re.sub(r'《[^》]+》', '', text)       # 《ルビ》
-    text = re.sub(r'｜', '', text)                 # ルビ開始位置記号
-    text = re.sub(r'\r\n|\r', '\n', text)          # 改行コード統一
-
-    return text.strip()
-
-def _split_long_unit(unit: str, min_len: int, max_len: int) -> list[str]:
-    """長い段落を文の切れ目で、短い詩行を数行ずつまとめて分割する。"""
-    lines = [line.strip() for line in unit.split('\n') if line.strip()]
-
-    # 詩は一行でも欠けると意味が壊れやすいため、長い連は切り刻まず見送る。
-    if len(lines) > 1 and sum(map(len, lines)) / len(lines) < 28:
-        return []
-    else:
-        prose = "".join(lines)
-        pieces = [
-            piece.strip()
-            for piece in re.findall(r'.*?(?:[。！？]+[」』）】]?|$)', prose)
-            if piece.strip()
-        ]
-        separator = ""
-
-    chunks = []
-    current = ""
-    for piece in pieces:
-        candidate = f"{current}{separator if current else ''}{piece}"
-        if len(candidate) <= max_len:
-            current = candidate
-            continue
-
-        if len(current) >= min_len:
-            chunks.append(current)
-            current = ""
-
-        # 一文の途中を機械的に切った断片は採用しない。
-        current = piece if len(piece) <= max_len else ""
-
-    if min_len <= len(current) <= max_len:
-        chunks.append(current)
-    elif current and chunks and len(chunks[-1]) + len(separator) + len(current) <= max_len:
-        chunks[-1] = f"{chunks[-1]}{separator}{current}"
-
-    return chunks
+def normalize_candidate(text: str, work: str) -> str:
+    lines = [re.sub(r"[ \t　]+", " ", line).strip() for line in text.splitlines()]
+    lines = [line for line in lines if line and not SECTION_HEADING.fullmatch(line)]
+    text = "\n".join(lines).strip()
+    text = re.sub(r"^[×△☆○]+[　 ]*", "", text)
+    if work == "法句経":
+        text = re.sub(r"^[〇一二三四五六七八九零]{2,4}[　 ]+", "", text)
+    return strip_outer_quote(text)
 
 
-def standalone_score(text: str, source_type: str) -> Optional[int]:
-    """単体で読める断片だけを残し、編集上の優先度を返す。"""
-    is_poetry = "\n" in text
-    if text.startswith("○") or CONTEXTUAL_OPENINGS.search(text):
+def hiragana_ratio(text: str) -> float:
+    hiragana = len(re.findall(r"[ぁ-ん]", text))
+    readable_japanese = len(re.findall(r"[ぁ-ん一-龯々]", text))
+    return hiragana / readable_japanese if readable_japanese else 0.0
+
+
+def standalone_score(text: str, source_type: str, mode: str) -> Optional[int]:
+    """0.5秒で読み始められ、単体で閉じている断片だけを採用する。"""
+    compact_len = len(text.replace("\n", ""))
+    lines = text.splitlines()
+    if not MIN_LEN <= compact_len <= MAX_LEN or not 1 <= len(lines) <= 3:
         return None
-    if re.fullmatch(r'[\s\d一二三四五六七八九十百千（\）()]+', text):
+    if CONTEXTUAL_OPENINGS.search(text) or SPECIAL_CHARACTERS.search(text):
+        return None
+    if mode == "prose" and DEPENDENT_PHRASES.search(text):
+        return None
+    if mode == "prose" and re.search(r"(?:（[一二三四五六七八九十]+月[^）]*）|^[（(][月火水木金土日][）)])", text):
+        return None
+    if mode == "poetry" and POETRY_META.search(text):
+        return None
+    if mode == "poetry" and len(re.findall(r"[。！？]", text)) > 2:
+        return None
+    if re.fullmatch(r"[\s\d一二三四五六七八九十百千（\）()・]+", text):
+        return None
+    if not re.search(r"[ぁ-んァ-ヶ一-龯々]", text):
         return None
     if text.count("「") != text.count("」") or text.count("『") != text.count("』"):
         return None
     if text.count("（") != text.count("）"):
         return None
-    if not is_poetry and not re.search(r'[。！？…」』）]$', text):
+    if CONVERSATION_ENDINGS.search(text) or INCOMPLETE_ENDINGS.search(text):
         return None
-    if re.search(r'[、，：；（「『—―]$', text) or ATTRIBUTION_ONLY_ENDINGS.search(text):
+    if re.search(r"[、，：；（「『—―]$", text):
+        return None
+    if mode == "prose" and not re.search(r"[。！？…）]$", text):
+        return None
+    if mode == "prose" and len(re.findall(r"[。！？]", text)) > 3:
         return None
 
-    score = 100
-    score += {"aphorism": 35, "classic": 30, "essay": 16, "diary": 12, "poetry": 24}.get(source_type, 0)
-    score += min(len(re.findall(r'[。！？]', text)), 3) * 4
-    if text.startswith(("「", "『")) and text.endswith(("」", "』")):
-        score += 12
-    if re.search(r'(私は|自分は|人間は|人生|幸福|自由|孤独|言葉|真理|生き|死|愛|心)', text):
+    minimum_ratio = 0.12 if mode == "poetry" else 0.18
+    if hiragana_ratio(text) < minimum_ratio:
+        return None
+
+    score = {"poetry": 155, "aphorism": 150, "diary": 135, "essay": 125}[source_type]
+    if 18 <= compact_len <= 72:
+        score += 16
+    elif compact_len <= 88:
         score += 8
-    if 55 <= len(text) <= 120:
-        score += 6
+    if re.search(r"(私|わたし|われ|自分|ひとり|一人|こころ|心|生き|死|好き|悲|淋|寂|働|金|酒|眠|夢)", text):
+        score += 18
+    if re.search(r"(朝|夜|雨|雪|風|花|月|山|海|空|猫|犬|食|飲|笑|泣|病|旅|家|友)", text):
+        score += 8
+    if re.search(r"(これ|それ|あれ|ここに|そこに|ような|わけで|のである|という|といふ)", text):
+        score -= 18
+    if mode == "poetry" and len(lines) <= 3:
+        score += 12
     return score
 
 
-def chunk_text(text: str, author: str, work: str, year: str = "", min_len: int = 35, max_len: int = 140) -> list:
-    """
-    本文を段落単位に分割し、Xのタイムラインとして読みやすい長さにフィルタリングする
-    """
-    raw_blocks = [p.strip() for p in re.split(r'\n\s*\n', text) if p.strip()]
+def poetry_candidates(text: str) -> list[str]:
+    """短歌の三行組と自由律俳句の一行を、そのまま一投稿として扱う。"""
+    candidates = []
+    for block in re.split(r"\n\s*\n", text):
+        lines = [line.strip() for line in block.splitlines() if line.strip()]
+        # 原句の直後に添えられた括弧内の現代表記は重複投稿にしない。
+        lines = [line for line in lines if not (line.startswith("（") and line.endswith("）"))]
+        if not lines or len(lines) > 3:
+            continue
+        candidates.append("\n".join(lines))
+    return candidates
+
+
+def prose_candidates(text: str) -> list[str]:
+    """短い元段落、または長い段落中でも単独で完結した一文だけを候補にする。"""
+    candidates = []
+    for block in re.split(r"\n\s*\n", text):
+        block = "".join(line.strip() for line in block.splitlines() if line.strip())
+        if not block:
+            continue
+        if len(block) <= MAX_LEN:
+            candidates.append(block)
+            continue
+        candidates.extend(
+            piece.strip()
+            for piece in re.findall(r".*?(?:[。！？]+[」』）]?|$)", block)
+            if piece.strip() and len(re.findall(r"[。！？]", piece)) == 1
+        )
+    return candidates
+
+
+def extract_work(text: str, author: str, work: str, year: str, profile: dict) -> list[dict]:
+    raw_candidates = poetry_candidates(text) if profile["mode"] == "poetry" else prose_candidates(text)
     results = []
     seen_texts = set()
-    profile = SOURCE_PROFILES.get(work, {"source_type": "fiction", "tone": "white"})
 
-    for block in raw_blocks:
-        lines = [line.strip() for line in block.split('\n') if line.strip()]
-        if not lines:
+    for raw_candidate in raw_candidates:
+        candidate = normalize_candidate(raw_candidate, work)
+        if not candidate or candidate in seen_texts:
             continue
-
-        # 青空文庫の小説は一段落一改行、詩は短い行の連なりであることが多い。
-        if len(lines) > 4 and sum(map(len, lines)) / len(lines) >= 28:
-            units = lines
-        else:
-            units = ["\n".join(lines)]
-
-        for unit in units:
-            candidates = [unit] if min_len <= len(unit) <= max_len else _split_long_unit(unit, min_len, max_len)
-            for clean_p in candidates:
-                original_p = clean_p
-                # 日本語を含まない断片と重複を除外する。
-                if clean_p in seen_texts or not re.search(r'[ぁ-んァ-ヶ一-龯々]', clean_p):
-                    continue
-                if not min_len <= len(clean_p) <= max_len:
-                    continue
-                if work == "法句経" and not re.match(r'^[〇一二三四五六七八九零]{2,4}[　 ]', original_p):
-                    continue
-                if work == "現代訳論語" and not ("「" in original_p and "」" in original_p):
-                    continue
-                clean_p = strip_outer_quote(clean_p)
-                if not min_len <= len(clean_p) <= max_len:
-                    continue
-                quality = standalone_score(clean_p, profile["source_type"])
-                if quality is None or quality < MIN_QUALITY[profile["source_type"]]:
-                    continue
-                seen_texts.add(clean_p)
-                # 一意なIDの生成（テキストと作者のハッシュ）
-                uid = hashlib.md5(f"{author}_{work}_{clean_p}".encode('utf-8')).hexdigest()[:8]
-                results.append({
-                    "id": f"{author[:2]}_{uid}",
-                    "author": author,
-                    "work": work,
-                    "year": year,
-                    "text": clean_p,
-                    "source_type": profile["source_type"],
-                    "tone": profile["tone"],
-                    "_quality": quality
-                })
+        quality = standalone_score(candidate, profile["source_type"], profile["mode"])
+        if quality is None:
+            continue
+        seen_texts.add(candidate)
+        uid = hashlib.md5(f"{author}_{work}_{candidate}".encode("utf-8")).hexdigest()[:8]
+        results.append({
+            "id": f"{author[:2]}_{uid}",
+            "author": author,
+            "work": work,
+            "year": year,
+            "text": candidate,
+            "source_type": profile["source_type"],
+            "tone": profile["tone"],
+            "_quality": quality,
+        })
 
     return sorted(results, key=lambda item: item["_quality"], reverse=True)
 
-def process_directory(input_dir: str = "./texts", output_file: str = "quotes.json", max_quotes: int = DEFAULT_MAX_QUOTES):
-    """
-    input_dir 内の全 txt ファイルを処理して output_file に出力する。
-    ファイル名フォーマット想定: 「作者_作品名_年代.txt」（例: 太宰治_人間失格_1948年.txt）
-    """
-    if not os.path.exists(input_dir):
-        os.makedirs(input_dir, exist_ok=True)
-        print(f"ディレクトリ '{input_dir}' を作成しました。青空文庫の .txt ファイルを配置してください。")
-        return
 
-    txt_files = sorted(glob.glob(os.path.join(input_dir, "*.txt")))
-    if not txt_files:
-        print(f"'{input_dir}' に .txt ファイルが見つかりません。")
-        return
-
-    quotes_by_work = []
-
-    for filepath in txt_files:
-        filename = os.path.splitext(os.path.basename(filepath))[0]
-        parts = filename.split('_')
-        
-        author = parts[0] if len(parts) > 0 else "不明"
-        work = parts[1] if len(parts) > 1 else "無題"
-        year = parts[2] if len(parts) > 2 else ""
-
-        # エンコーディングの自動判別（青空文庫は Shift_JIS または UTF-8）
-        content = None
-        for enc in ['utf-8', 'cp932', 'shift_jis', 'euc-jp']:
-            try:
-                with open(filepath, 'r', encoding=enc) as f:
-                    content = f.read()
-                break
-            except (UnicodeDecodeError, LookupError):
-                continue
-
-        if content is None:
-            print(f"スキップ（エンコーディング判別不能）: {filepath}")
+def read_text(filepath: str) -> Optional[str]:
+    for encoding in ("utf-8", "cp932", "shift_jis", "euc-jp"):
+        try:
+            with open(filepath, "r", encoding=encoding) as source:
+                return source.read()
+        except (UnicodeDecodeError, LookupError):
             continue
+    return None
 
-        cleaned = clean_aozora_text(content)
-        quotes = chunk_text(cleaned, author, work, year)
-        quotes_by_work.append(quotes)
-        print(f"抽出完了: {author}『{work}』 -> {len(quotes)} 件")
 
-    # 「日常→毒→超越→詩」の落差を作りつつ、各作品が一作だけを占有しないよう選ぶ。
-    all_quotes = []
+def select_balanced(quotes_by_work: list[list[dict]], max_quotes: int) -> list[dict]:
+    selected = []
     selected_ids = set()
+    author_counts = Counter()
     targets = {tone: round(max_quotes * ratio) for tone, ratio in TONE_RATIOS.items()}
     targets["white"] += max_quotes - sum(targets.values())
 
+    def add(item: dict, enforce_cap: bool = True) -> bool:
+        if item["id"] in selected_ids:
+            return False
+        if enforce_cap and author_counts[item["author"]] >= MAX_PER_AUTHOR:
+            return False
+        selected.append(item)
+        selected_ids.add(item["id"])
+        author_counts[item["author"]] += 1
+        return True
+
     for tone, target in targets.items():
-        work_pools = [[q for q in quotes if q["tone"] == tone] for quotes in quotes_by_work]
-        work_pools = [pool for pool in work_pools if pool]
-        for index in range(max((len(pool) for pool in work_pools), default=0)):
-            for pool in work_pools:
-                if index >= len(pool):
-                    continue
-                quote = pool[index]
-                if quote["id"] in selected_ids:
-                    continue
-                all_quotes.append(quote)
-                selected_ids.add(quote["id"])
-                if sum(q["tone"] == tone for q in all_quotes) >= target:
+        pools = [[item for item in work if item["tone"] == tone] for work in quotes_by_work]
+        pools = [pool for pool in pools if pool]
+        tone_count = 0
+        for index in range(max((len(pool) for pool in pools), default=0)):
+            for pool in pools:
+                if index < len(pool) and add(pool[index]):
+                    tone_count += 1
+                if tone_count >= target:
                     break
-            if sum(q["tone"] == tone for q in all_quotes) >= target:
+            if tone_count >= target:
                 break
 
-    # 小規模ソースが目標数に届かない場合は、品質順で不足分を補う。
     remaining = sorted(
-        (q for quotes in quotes_by_work for q in quotes if q["id"] not in selected_ids),
+        (item for work in quotes_by_work for item in work if item["id"] not in selected_ids),
         key=lambda item: item["_quality"],
         reverse=True,
     )
-    all_quotes.extend(remaining[:max(0, max_quotes - len(all_quotes))])
+    for item in remaining:
+        if len(selected) >= max_quotes:
+            break
+        add(item)
+    for item in remaining:
+        if len(selected) >= max_quotes:
+            break
+        add(item, enforce_cap=False)
+    return selected
 
-    for quote in all_quotes:
-        quote.pop("_quality", None)
 
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(all_quotes, f, ensure_ascii=False, indent=2)
+def process_directory(input_dir: str = "./texts", output_file: str = "quotes.json", max_quotes: int = DEFAULT_MAX_QUOTES):
+    if not os.path.exists(input_dir):
+        os.makedirs(input_dir, exist_ok=True)
+        return
 
-    print(f"\n総計 {len(all_quotes)} 件の断片を '{output_file}' に書き出しました。")
+    quotes_by_work = []
+    for filepath in sorted(glob.glob(os.path.join(input_dir, "*.txt"))):
+        filename = os.path.splitext(os.path.basename(filepath))[0]
+        parts = filename.split("_")
+        author = parts[0] if parts else "不明"
+        work = parts[1] if len(parts) > 1 else "無題"
+        year = parts[2] if len(parts) > 2 else ""
+        profile = SOURCE_PROFILES.get(work)
+        if profile is None:
+            print(f"対象外: {author}『{work}』")
+            continue
+
+        raw = read_text(filepath)
+        if raw is None:
+            print(f"スキップ（文字コード判別不能）: {filepath}")
+            continue
+        quotes = extract_work(clean_aozora_text(raw), author, work, year, profile)
+        quotes_by_work.append(quotes)
+        print(f"抽出完了: {author}『{work}』 -> {len(quotes)} 件")
+
+    selected = select_balanced(quotes_by_work, max_quotes)
+    for item in selected:
+        item.pop("_quality", None)
+
+    with open(output_file, "w", encoding="utf-8") as destination:
+        json.dump(selected, destination, ensure_ascii=False, indent=2)
+
+    authors = len({item["author"] for item in selected})
+    print(f"\n総計 {len(selected)} 件・{authors}名の断片を '{output_file}' に書き出しました。")
+
 
 if __name__ == "__main__":
     process_directory()

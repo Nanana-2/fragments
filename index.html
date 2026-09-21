@@ -97,39 +97,16 @@
     }
 
     .brand-title {
+      appearance: none;
+      border: 0;
+      background: none;
+      color: var(--text);
+      font-family: var(--font);
       font-weight: 700;
       font-size: 18px;
       letter-spacing: -0.02em;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .refresh-btn {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      min-height: 34px;
-      padding: 0 10px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 12px;
-      font-weight: 700;
       cursor: pointer;
-    }
-
-    .refresh-btn.is-refreshing svg {
-      animation: refresh-spin 0.55s linear infinite;
-    }
-
-    @keyframes refresh-spin {
-      to { transform: rotate(360deg); }
+      padding: 4px 0;
     }
 
     .theme-toggle-btn {
@@ -192,29 +169,6 @@
       transition: height 0.2s ease;
     }
 
-    #refresh-status {
-      position: fixed;
-      top: 78px;
-      left: 50%;
-      transform: translate(-50%, -12px);
-      z-index: 120;
-      padding: 7px 13px;
-      border: 1px solid var(--text);
-      border-radius: 999px;
-      background: var(--text);
-      color: var(--bg);
-      font-size: 12px;
-      font-weight: 700;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-
-    #refresh-status.visible {
-      opacity: 1;
-      transform: translate(-50%, 0);
-    }
-
     .post {
       display: flex;
       gap: 12px;
@@ -235,6 +189,15 @@
       font-weight: 700;
       font-size: 15px;
       user-select: none;
+      overflow: hidden;
+    }
+
+    .post-avatar img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: grayscale(1);
     }
 
     .post-content {
@@ -335,25 +298,16 @@
   <div class="app-container">
     <header>
       <div class="header-top">
-        <span class="brand-title">Fragments</span>
-        <div class="header-actions">
-          <button class="refresh-btn" id="refreshBtn" aria-label="タイムラインを更新">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20 6v5h-5"></path><path d="M4 18v-5h5"></path>
-              <path d="M6.1 9a7 7 0 0 1 11.5-2.6L20 9"></path><path d="M17.9 15a7 7 0 0 1-11.5 2.6L4 15"></path>
-            </svg>
-            <span>更新</span>
-          </button>
-          <button class="theme-toggle-btn" id="themeBtn" aria-label="テーマ切替">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2v2"></path><path d="M12 20v2"></path>
-              <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
-              <path d="M2 12h2"></path><path d="M20 12h2"></path>
-              <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
-            </svg>
-          </button>
-        </div>
+        <button class="brand-title" id="brandRefreshBtn" aria-label="タイムラインを更新">Fragments</button>
+        <button class="theme-toggle-btn" id="themeBtn" aria-label="テーマ切替">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path><path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path><path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </button>
       </div>
       <nav class="tabs">
         <button class="tab-btn active" id="tabFeed">タイムライン</button>
@@ -362,7 +316,6 @@
     </header>
 
     <div id="pull-indicator">引っ張って更新</div>
-    <div id="refresh-status" role="status" aria-live="polite"></div>
     <main id="postFeed"></main>
   </div>
 
@@ -389,74 +342,40 @@
     // 2. 内蔵フォールバックデータ（quotes.json 未配置時でも即座に動作）
     const fallbackData = [
       {
-        id: "dazai_01",
-        author: "太宰治",
-        work: "女生徒",
-        year: "1939年",
-        text: "幸福は一夜おくれて来る。\n私の言葉ではない。或る鉄石の作家が言った言葉だ。幸福を待つ間が、一番幸福なのかも知れない。"
+        id: "fallback_takuboku_01", author: "石川啄木", work: "一握の砂", year: "1910年", tone: "gold",
+        text: "東海の小島の磯の白砂に\nわれ泣きぬれて\n蟹とたはむる"
       },
       {
-        id: "ango_01",
-        author: "坂口安吾",
-        work: "夜長姫と耳男",
-        year: "1952年",
-        text: "好きなものは呪うか殺すか争うかしなければならないのよ。お前のようにただ眺めて、愛しているなんて、それは嘘よ。"
+        id: "fallback_hosai_01", author: "尾崎放哉", work: "尾崎放哉選句集", year: "1926年", tone: "gold",
+        text: "たつた一人になりきつて夕空"
       },
       {
-        id: "akutagawa_01",
-        author: "芥川龍之介",
-        work: "侏儒の言葉",
-        year: "1923年",
-        text: "人生は一箱のマッチに似ている。重大に扱うのは莫迦莫迦しい。重大に扱わなければ危険である。"
+        id: "fallback_santoka_01", author: "種田山頭火", work: "草木塔", year: "1940年", tone: "gold",
+        text: "あるけばきんぽうげすわればきんぽうげ"
       },
       {
-        id: "kenji_01",
-        author: "宮沢賢治",
-        work: "春と修羅",
-        year: "1924年",
-        text: "わたくしといふ現象は、仮定された有機交流電燈のひとつの青い照明です。\n（あらゆる透明な幽霊の複合体）"
+        id: "fallback_akutagawa_01", author: "芥川龍之介", work: "侏儒の言葉", year: "1923年", tone: "black",
+        text: "古典の作者の幸福なる所以は兎に角彼等の死んでゐることである。"
       },
       {
-        id: "nakahara_01",
-        author: "中原中也",
-        work: "山羊の歌",
-        year: "1934年",
-        text: "汚れつちまつた悲しみに\n今日も小雪の降りかかる\n汚れつちまつた悲しみに\n今日も風さへ吹きすぎる"
+        id: "fallback_shiki_01", author: "正岡子規", work: "病牀六尺", year: "1902年", tone: "white",
+        text: "昨夜少しく睡眠を得て昨朝来の煩悶やや度を減ず、牛乳二杯を飲む。"
       },
       {
-        id: "kajii_01",
-        author: "梶井基次郎",
-        work: "愛撫",
-        year: "1930年",
-        text: "爪というものは、人間の皮膚が変質してできた一つの鋭敏な硬度である。これほど純粋に、触れるという快感を伝えてくる器官はない。"
+        id: "fallback_terada_01", author: "寺田寅彦", work: "科学者とあたま", year: "1933年", tone: "blue",
+        text: "頭のいい人は批評家に適するが行為の人にはなりにくい。"
       },
       {
-        id: "santoka_01",
-        author: "種田山頭火",
-        work: "行乞記",
-        year: "1932年",
-        text: "昼間は、なんの気もなしに暮らしているのだが、日が暮れて夜になると、私は急に人間が恋しくなるのである。"
+        id: "fallback_rosanjin_01", author: "北大路魯山人", work: "料理の秘訣", year: "1954年", tone: "white",
+        text: "料理の材料が悪くては一人前の美味い料理とはならない。"
       },
       {
-        id: "odasaku_01",
-        author: "織田作之助",
-        work: "夫婦善哉",
-        year: "1940年",
-        text: "死ぬことは、なんでもない。恐ろしいのは、生きることも死ぬことも、どっちでもよくなってしまうことだ。"
+        id: "fallback_kanoko_01", author: "岡本かの子", work: "小学生のとき与へられた教訓", year: "1936年", tone: "white",
+        text: "自分のする事は一つ一つに考慮と全責任を持つた。"
       },
       {
-        id: "soseki_01",
-        author: "夏目漱石",
-        work: "草枕",
-        year: "1906年",
-        text: "智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。"
-      },
-      {
-        id: "kotaro_01",
-        author: "高村光太郎",
-        work: "道程",
-        year: "1914年",
-        text: "僕の前に道はない\n僕の後ろに道は出来る"
+        id: "fallback_kotaro_01", author: "高村光太郎", work: "回想録", year: "1940年", tone: "white",
+        text: "私は現在目の前にあるものを尊しと思う。"
       }
     ];
 
@@ -469,8 +388,7 @@
     const tabFeed = document.getElementById('tabFeed');
     const tabLikes = document.getElementById('tabLikes');
     const pullIndicator = document.getElementById('pull-indicator');
-    const refreshBtn = document.getElementById('refreshBtn');
-    const refreshStatus = document.getElementById('refresh-status');
+    const brandRefreshBtn = document.getElementById('brandRefreshBtn');
 
     let currentTab = 'feed';
     let likedPostIds = new Set();
@@ -497,7 +415,7 @@
     });
 
     // 4. 重み付き推薦ロジック
-    const toneWeights = { white: 55, black: 20, blue: 17, gold: 8 };
+    const toneWeights = { white: 35, black: 20, blue: 15, gold: 30 };
     const recentPostIds = [];
     const recentTones = [];
     const recentAuthors = [];
@@ -602,16 +520,30 @@
       return depth === 0 ? text.slice(1, -1).trim() : text;
     }
 
+    const authorAvatars = {
+      '芥川龍之介': './avatars/akutagawa-ryunosuke.jpg',
+      '石川啄木': './avatars/ishikawa-takuboku.jpg',
+      '尾崎放哉': './avatars/ozaki-hosai.jpg',
+      '種田山頭火': './avatars/taneda-santoka.jpg',
+      '寺田寅彦': './avatars/terada-torahiko.jpg',
+      '正岡子規': './avatars/masaoka-shiki.jpg',
+      '北大路魯山人': './avatars/kitaoji-rosanjin.jpg',
+      '岡本かの子': './avatars/okamoto-kanoko.jpg',
+      '高村光太郎': './avatars/takamura-kotaro.jpg',
+      '下村湖人': './avatars/shimomura-kojin.jpg'
+    };
+
     function createPostNode(item) {
       const isLiked = likedPostIds.has(item.id);
       const displayText = stripOuterQuote(item.text);
+      const avatar = authorAvatars[item.author];
       const article = document.createElement('article');
       article.className = 'post';
       article.dataset.author = item.author;
       article.dataset.id = item.id;
 
       article.innerHTML = `
-        <div class="post-avatar">${escapeHTML(item.author[0])}</div>
+        <div class="post-avatar">${avatar ? `<img src="${avatar}" alt="" loading="lazy">` : escapeHTML(item.author[0])}</div>
         <div class="post-content">
           <div class="post-meta">
             <span class="author-name">${escapeHTML(item.author)}</span>
@@ -695,34 +627,18 @@
       }
     }
 
-    let refreshTimer = null;
-    function showRefreshStatus(message) {
-      refreshStatus.textContent = message;
-      refreshStatus.classList.add('visible');
-      clearTimeout(refreshTimer);
-      refreshTimer = setTimeout(() => refreshStatus.classList.remove('visible'), 1400);
-    }
-
-    function refreshTimeline(count = 6) {
+    function refreshTimeline() {
       if (currentTab !== 'feed') {
         currentTab = 'feed';
         tabFeed.classList.add('active');
         tabLikes.classList.remove('active');
-        feedElem.innerHTML = '';
       }
-
-      refreshBtn.classList.add('is-refreshing');
-      const fragment = document.createDocumentFragment();
-      for (let i = 0; i < count; i++) {
-        fragment.appendChild(createPostNode(pickNextItem()));
-      }
-      feedElem.insertBefore(fragment, feedElem.firstChild);
+      feedElem.innerHTML = '';
+      appendFeedPosts(8);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      showRefreshStatus(`${count}件の新しい断片`);
-      setTimeout(() => refreshBtn.classList.remove('is-refreshing'), 550);
     }
 
-    refreshBtn.addEventListener('click', () => refreshTimeline(6));
+    brandRefreshBtn.addEventListener('click', refreshTimeline);
 
     function renderLikes() {
       feedElem.innerHTML = '';
@@ -738,10 +654,7 @@
 
     // タブ切り替え
     tabFeed.addEventListener('click', () => {
-      if (currentTab === 'feed') {
-        refreshTimeline(6);
-        return;
-      }
+      if (currentTab === 'feed') return;
       currentTab = 'feed';
       tabFeed.classList.add('active');
       tabLikes.classList.remove('active');
@@ -799,7 +712,7 @@
       if (height > 40) {
         pullIndicator.textContent = '更新中...';
         setTimeout(() => {
-          refreshTimeline(6);
+          refreshTimeline();
           pullIndicator.style.height = '0px';
         }, 400);
       } else {
