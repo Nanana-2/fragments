@@ -17,7 +17,7 @@ TONE_RATIOS = {
 
 MIN_QUALITY = {
     "fiction": 124,
-    "classic": 140,
+    "classic": 132,
     "essay": 122,
     "diary": 110,
     "poetry": 128,
@@ -32,6 +32,12 @@ SOURCE_PROFILES = {
     "現代訳論語": {"source_type": "classic", "tone": "blue"},
     "法句経": {"source_type": "classic", "tone": "blue"},
     "一日中の楽しき時刻": {"source_type": "diary", "tone": "white"},
+    "科学者とあたま": {"source_type": "essay", "tone": "blue"},
+    "病牀六尺": {"source_type": "diary", "tone": "white"},
+    "料理の秘訣": {"source_type": "essay", "tone": "white"},
+    "行乞記": {"source_type": "diary", "tone": "white"},
+    "小学生のとき与へられた教訓": {"source_type": "essay", "tone": "white"},
+    "回想録": {"source_type": "essay", "tone": "white"},
 }
 
 CONTEXTUAL_OPENINGS = re.compile(
@@ -43,6 +49,25 @@ CONTEXTUAL_OPENINGS = re.compile(
 ATTRIBUTION_ONLY_ENDINGS = re.compile(
     r'(言|云|答|尋|たず|訊|話|返事|質問|叫|怒鳴|説明)\w{0,8}(ました|ます|った|いう|云う)。?$'
 )
+
+
+def strip_outer_quote(text: str) -> str:
+    """断片全体を包む一組だけの鉤括弧を外す。複数発言の括弧は維持する。"""
+    pairs = {"「": "」", "『": "』"}
+    opening = text[:1]
+    closing = pairs.get(opening)
+    if not closing or not text.endswith(closing):
+        return text
+
+    depth = 0
+    for index, char in enumerate(text):
+        if char == opening:
+            depth += 1
+        elif char == closing:
+            depth -= 1
+            if depth == 0 and index != len(text) - 1:
+                return text
+    return text[1:-1].strip() if depth == 0 else text
 
 def clean_aozora_text(raw_text: str) -> str:
     """
@@ -157,14 +182,18 @@ def chunk_text(text: str, author: str, work: str, year: str = "", min_len: int =
         for unit in units:
             candidates = [unit] if min_len <= len(unit) <= max_len else _split_long_unit(unit, min_len, max_len)
             for clean_p in candidates:
+                original_p = clean_p
                 # 日本語を含まない断片と重複を除外する。
                 if clean_p in seen_texts or not re.search(r'[ぁ-んァ-ヶ一-龯々]', clean_p):
                     continue
                 if not min_len <= len(clean_p) <= max_len:
                     continue
-                if work == "法句経" and not re.match(r'^[〇一二三四五六七八九零]{2,4}[　 ]', clean_p):
+                if work == "法句経" and not re.match(r'^[〇一二三四五六七八九零]{2,4}[　 ]', original_p):
                     continue
-                if work == "現代訳論語" and not ("「" in clean_p and "」" in clean_p):
+                if work == "現代訳論語" and not ("「" in original_p and "」" in original_p):
+                    continue
+                clean_p = strip_outer_quote(clean_p)
+                if not min_len <= len(clean_p) <= max_len:
                     continue
                 quality = standalone_score(clean_p, profile["source_type"])
                 if quality is None or quality < MIN_QUALITY[profile["source_type"]]:

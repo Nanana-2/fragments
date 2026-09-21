@@ -13,13 +13,13 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Fragments | 文字を浴びるタイムライン">
   <meta property="og:description" content="文字を追いたい。怒りは見たくない。古い言葉だけが流れ続けるタイムライン。">
-  <meta property="og:image" content="/ogp-v2.png">
+  <meta property="og:image" content="/ogp.png">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Fragments | 文字を浴びるタイムライン">
   <meta name="twitter:description" content="文字を追いたい。怒りは見たくない。古い言葉だけが流れ続けるタイムライン。">
-  <meta name="twitter:image" content="/ogp-v2.png">
+  <meta name="twitter:image" content="/ogp.png">
 
   <!-- PWA -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -102,12 +102,34 @@
       letter-spacing: -0.02em;
     }
 
-    .brand-tagline {
-      display: block;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0;
-      margin-top: 1px;
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .refresh-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 34px;
+      padding: 0 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .refresh-btn.is-refreshing svg {
+      animation: refresh-spin 0.55s linear infinite;
+    }
+
+    @keyframes refresh-spin {
+      to { transform: rotate(360deg); }
     }
 
     .theme-toggle-btn {
@@ -168,6 +190,29 @@
       font-size: 13px;
       color: var(--sub);
       transition: height 0.2s ease;
+    }
+
+    #refresh-status {
+      position: fixed;
+      top: 78px;
+      left: 50%;
+      transform: translate(-50%, -12px);
+      z-index: 120;
+      padding: 7px 13px;
+      border: 1px solid var(--text);
+      border-radius: 999px;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    #refresh-status.visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
     }
 
     .post {
@@ -290,16 +335,25 @@
   <div class="app-container">
     <header>
       <div class="header-top">
-        <span class="brand-title">Fragments<span class="brand-tagline">文字を追いたい。怒りは見たくない。</span></span>
-        <button class="theme-toggle-btn" id="themeBtn" aria-label="テーマ切替">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2"></path><path d="M12 20v2"></path>
-            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
-            <path d="M2 12h2"></path><path d="M20 12h2"></path>
-            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
-          </svg>
-        </button>
+        <span class="brand-title">Fragments</span>
+        <div class="header-actions">
+          <button class="refresh-btn" id="refreshBtn" aria-label="タイムラインを更新">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6v5h-5"></path><path d="M4 18v-5h5"></path>
+              <path d="M6.1 9a7 7 0 0 1 11.5-2.6L20 9"></path><path d="M17.9 15a7 7 0 0 1-11.5 2.6L4 15"></path>
+            </svg>
+            <span>更新</span>
+          </button>
+          <button class="theme-toggle-btn" id="themeBtn" aria-label="テーマ切替">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path><path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path><path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </button>
+        </div>
       </div>
       <nav class="tabs">
         <button class="tab-btn active" id="tabFeed">タイムライン</button>
@@ -308,6 +362,7 @@
     </header>
 
     <div id="pull-indicator">引っ張って更新</div>
+    <div id="refresh-status" role="status" aria-live="polite"></div>
     <main id="postFeed"></main>
   </div>
 
@@ -414,6 +469,8 @@
     const tabFeed = document.getElementById('tabFeed');
     const tabLikes = document.getElementById('tabLikes');
     const pullIndicator = document.getElementById('pull-indicator');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const refreshStatus = document.getElementById('refresh-status');
 
     let currentTab = 'feed';
     let likedPostIds = new Set();
@@ -443,6 +500,7 @@
     const toneWeights = { white: 55, black: 20, blue: 17, gold: 8 };
     const recentPostIds = [];
     const recentTones = [];
+    const recentAuthors = [];
 
     function pickTone() {
       const adjusted = Object.entries(toneWeights).map(([tone, weight]) => ({
@@ -467,6 +525,9 @@
       }
       if (candidates.length === 0) candidates = masterData;
 
+      const freshAuthors = candidates.filter(item => !recentAuthors.includes(item.author));
+      if (freshAuthors.length > 0) candidates = freshAuthors;
+
       let totalWeight = 0;
       const weights = candidates.map(item => {
         const affinity = authorAffinities[item.author] || 0;
@@ -488,6 +549,8 @@
       if (recentPostIds.length > 40) recentPostIds.shift();
       recentTones.push(picked.tone || 'white');
       if (recentTones.length > 2) recentTones.shift();
+      recentAuthors.push(picked.author);
+      if (recentAuthors.length > 6) recentAuthors.shift();
       return picked;
     }
 
@@ -523,8 +586,25 @@
       }[tag] || tag));
     }
 
+    function stripOuterQuote(text) {
+      const pairs = { '「': '」', '『': '』' };
+      const opening = text[0];
+      const closing = pairs[opening];
+      if (!closing || !text.endsWith(closing)) return text;
+      let depth = 0;
+      for (let i = 0; i < text.length; i++) {
+        if (text[i] === opening) depth++;
+        if (text[i] === closing) {
+          depth--;
+          if (depth === 0 && i !== text.length - 1) return text;
+        }
+      }
+      return depth === 0 ? text.slice(1, -1).trim() : text;
+    }
+
     function createPostNode(item) {
       const isLiked = likedPostIds.has(item.id);
+      const displayText = stripOuterQuote(item.text);
       const article = document.createElement('article');
       article.className = 'post';
       article.dataset.author = item.author;
@@ -539,7 +619,7 @@
             <span class="meta-dot">·</span>
             <span class="post-time">${escapeHTML(item.year || '')}</span>
           </div>
-          <div class="post-body">${escapeHTML(item.text)}</div>
+          <div class="post-body">${escapeHTML(displayText)}</div>
           <div class="post-actions">
             <button class="action-btn like-btn ${isLiked ? 'liked' : ''}" aria-label="いいね">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -579,7 +659,7 @@
       // 共有処理（OSネイティブ共有優先、フォールバックでXの投稿画面を開く）
       const shareBtn = article.querySelector('.share-btn');
       shareBtn.addEventListener('click', async () => {
-        const shareText = `${item.text}\n\n―― ${item.author} @${item.work}`;
+        const shareText = `${displayText}\n\n―― ${item.author} @${item.work}`;
         const currentUrl = window.location.href.split('#')[0];
 
         if (navigator.share) {
@@ -615,6 +695,35 @@
       }
     }
 
+    let refreshTimer = null;
+    function showRefreshStatus(message) {
+      refreshStatus.textContent = message;
+      refreshStatus.classList.add('visible');
+      clearTimeout(refreshTimer);
+      refreshTimer = setTimeout(() => refreshStatus.classList.remove('visible'), 1400);
+    }
+
+    function refreshTimeline(count = 6) {
+      if (currentTab !== 'feed') {
+        currentTab = 'feed';
+        tabFeed.classList.add('active');
+        tabLikes.classList.remove('active');
+        feedElem.innerHTML = '';
+      }
+
+      refreshBtn.classList.add('is-refreshing');
+      const fragment = document.createDocumentFragment();
+      for (let i = 0; i < count; i++) {
+        fragment.appendChild(createPostNode(pickNextItem()));
+      }
+      feedElem.insertBefore(fragment, feedElem.firstChild);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      showRefreshStatus(`${count}件の新しい断片`);
+      setTimeout(() => refreshBtn.classList.remove('is-refreshing'), 550);
+    }
+
+    refreshBtn.addEventListener('click', () => refreshTimeline(6));
+
     function renderLikes() {
       feedElem.innerHTML = '';
       const likedItems = masterData.filter(d => likedPostIds.has(d.id));
@@ -629,7 +738,10 @@
 
     // タブ切り替え
     tabFeed.addEventListener('click', () => {
-      if (currentTab === 'feed') return;
+      if (currentTab === 'feed') {
+        refreshTimeline(6);
+        return;
+      }
       currentTab = 'feed';
       tabFeed.classList.add('active');
       tabLikes.classList.remove('active');
@@ -687,8 +799,7 @@
       if (height > 40) {
         pullIndicator.textContent = '更新中...';
         setTimeout(() => {
-          const newItem = pickNextItem();
-          feedElem.insertBefore(createPostNode(newItem), feedElem.firstChild);
+          refreshTimeline(6);
           pullIndicator.style.height = '0px';
         }, 400);
       } else {
