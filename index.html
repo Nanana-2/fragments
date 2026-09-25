@@ -430,6 +430,9 @@
     const sessionSeenIds = new Set();
     const recentAuthors = [];
     let feedQueue = [];
+    let quoteShardQueue = [];
+    let quoteShardLoading = null;
+    let usingFallbackData = true;
 
     function weightedShuffle(items) {
       const authorTotals = items.reduce((totals, item) => {
@@ -452,6 +455,53 @@
       const unseen = masterData.filter(item => !sessionSeenIds.has(item.id));
       const sample = weightedShuffle(unseen).slice(0, Math.min(120, unseen.length));
       feedQueue = weightedShuffle(sample);
+    }
+
+    function shuffleValues(items) {
+      const shuffled = items.slice();
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    async function loadQuoteShard(filename) {
+      const response = await fetch(`./${filename}?v=20260925`);
+      if (!response.ok) throw new Error(`quote shard: ${response.status}`);
+      const items = await response.json();
+      if (!Array.isArray(items) || items.length === 0) return;
+      if (usingFallbackData) {
+        masterData = [];
+        feedQueue = [];
+        usingFallbackData = false;
+      }
+      masterData.push(...items);
+    }
+
+    async function loadNextQuoteShard() {
+      if (quoteShardLoading) return quoteShardLoading;
+      const filename = quoteShardQueue.shift();
+      if (!filename) return null;
+      quoteShardLoading = loadQuoteShard(filename).finally(() => {
+        quoteShardLoading = null;
+      });
+      return quoteShardLoading;
+    }
+
+    function ensureQuoteSupply() {
+      const remaining = masterData.length - sessionSeenIds.size - feedQueue.length;
+      if (quoteShardQueue.length > 0 && !quoteShardLoading && remaining < 240) {
+        void loadNextQuoteShard();
+      }
+    }
+
+    async function loadAllQuoteShards() {
+      if (quoteShardLoading) await quoteShardLoading;
+      const remainingFiles = quoteShardQueue.splice(0);
+      for (let index = 0; index < remainingFiles.length; index += 4) {
+        await Promise.all(remainingFiles.slice(index, index + 4).map(loadQuoteShard));
+      }
     }
 
     function pickNextItem() {
@@ -636,6 +686,7 @@
         const item = pickNextItem();
         feedElem.appendChild(createPostNode(item));
       }
+      ensureQuoteSupply();
     }
 
     function refreshTimeline() {
@@ -666,12 +717,20 @@
     // タブ切り替え
     tabFeed.addEventListener('click', refreshTimeline);
 
-    tabLikes.addEventListener('click', () => {
+    tabLikes.addEventListener('click', async () => {
       if (currentTab === 'likes') return;
       currentTab = 'likes';
       tabLikes.classList.add('active');
       tabFeed.classList.remove('active');
       renderLikes();
+      if (quoteShardQueue.length > 0 || quoteShardLoading) {
+        try {
+          await loadAllQuoteShards();
+          if (currentTab === 'likes') renderLikes();
+        } catch (e) {
+          // 読み込み済みの保存だけで表示を継続する
+        }
+      }
     });
 
     // 無限スクロール
@@ -724,29 +783,31 @@
       }
     });
 
-    // 外部JSON読み込み（存在しない場合はフォールバックのまま動作）
+    // 最初のカードは内蔵データで即時表示し、全件は小さなシャードで必要時に読む。
     async function init() {
+      const avatarPromise = fetch('./avatar_manifest.json?v=20260925')
+        .then(response => response.ok ? response.json() : null)
+        .then(avatars => {
+          if (avatars && typeof avatars === 'object') Object.assign(authorAvatars, avatars);
+        })
+        .catch(() => null);
       try {
-        const [quoteResponse, avatarResponse] = await Promise.all([
-          fetch('./quotes.json?v=20260922-10000'),
-          fetch('./avatar_manifest.json?v=20260922').catch(() => null)
-        ]);
-        if (quoteResponse.ok) {
-          const json = await quoteResponse.json();
-          if (Array.isArray(json) && json.length > 0) {
-            masterData = json;
+        const response = await fetch('./quote-manifest.json?v=20260925');
+        if (response.ok) {
+          const manifest = await response.json();
+          if (Array.isArray(manifest.files)) {
+            quoteShardQueue = shuffleValues(manifest.files);
+            await loadNextQuoteShard();
+            ensureQuoteSupply();
           }
         }
-        if (avatarResponse && avatarResponse.ok) {
-          const avatars = await avatarResponse.json();
-          if (avatars && typeof avatars === 'object') Object.assign(authorAvatars, avatars);
-        }
       } catch (e) {
-        // quotes.json がない環境では fallbackData を維持
+        // 配信データがない環境では即時表示したfallbackDataを維持
       }
-      appendFeedPosts(8);
+      void avatarPromise;
     }
 
+    appendFeedPosts(8);
     init();
   </script>
 </body>

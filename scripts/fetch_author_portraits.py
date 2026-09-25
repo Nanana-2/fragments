@@ -95,7 +95,7 @@ def commons_images(filenames: list[str]) -> dict[str, dict]:
             "titles": "|".join(f"File:{filename}" for filename in batch),
             "prop": "imageinfo",
             "iiprop": "url|mime|extmetadata",
-            "iiurlwidth": "320",
+            "iiurlwidth": "160",
             "format": "json",
         })
         for page in data.get("query", {}).get("pages", {}).values():
